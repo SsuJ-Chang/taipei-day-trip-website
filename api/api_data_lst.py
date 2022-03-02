@@ -64,11 +64,10 @@ def getDataList():
 	print("page", page)
 	print("keyword", keyword)
 	print("從資料庫查到的資料總數", len(result))
-	print(result)
 
 	try:
 		if result == []:  # 搜尋不到資料即錯誤
-			status=500
+			status=400
 			data_result=error("找不到資料")
 		else:
 			if page is not None and keyword == "":  # 只用 page 搜尋的資料取得邏輯
@@ -79,27 +78,27 @@ def getDataList():
 				last_id=data_cursor.fetchone()
 				last_page=last_id['id']/12			
 			else:  # 用 keyword 搜尋的資料取得邏輯 page 會變成對應的頁數
-				if page > len(result)/12:  # page 超過總數
-					status=500
-					data_result=error("伺服器內部錯誤")
-				else:
-					status=200
-					if len(result) <= 12:  # 總資料 <= 12 的頁面資料取得
+				# if page > len(result)/12:  # page 超過總數
+				# 	status=400
+				# 	data_result=error("找不到資料")
+				# else:
+				status=200
+				if len(result) <= 12:  # 總資料 <= 12 的頁面資料取得
+					last_page=0
+					for datas in result:
+						data_lst.append(datas)
+				else:  # 總資料 >12 的頁面資料取得
+					if page+1 < len(result)/12:  # 非最後一頁的資料
+						last_page=page+1
+						for i in range(page*12, page*12+12):
+							data_lst.append(result[i])
+					else:  # 最後一頁的資料
 						last_page=0
-						for datas in result:
-							data_lst.append(datas)
-					else:  # 總資料 >12 的頁面資料取得
-						if page+1 < len(result)/12:  # 非最後一頁的資料
-							last_page=page+1
-							for i in range(page*12, page*12+12):
-								data_lst.append(result[i])
-						else:  # 最後一頁的資料
-							last_page=0
-							for i in range(page*12, len(result)):
-								data_lst.append(result[i])
+						for i in range(page*12, len(result)):
+							data_lst.append(result[i])
 
 			data_result=response_data(page, data_lst, last_page)
-			print(type(data_result['data'][0]))
+
 	except 500:
 		status=500
 		data_result=data_result=error("伺服器內部錯誤")
