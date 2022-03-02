@@ -33,6 +33,10 @@ def getDataList():
 			val=("%"+keyword+"%", )
 		data_cursor.execute(sql, val)
 		result=data_cursor.fetchall()
+		for i in range(len(result)):  # 把 images 的 value 從 字串 轉回 list
+			temp_images_val=json.loads(result[i]['images'])
+			result[i].pop('images', None)
+			result[i]['images']=temp_images_val
 		return result
 
 	def response_data(page, data_lst, last_page): # response 資料格式
@@ -60,6 +64,7 @@ def getDataList():
 	print("page", page)
 	print("keyword", keyword)
 	print("從資料庫查到的資料總數", len(result))
+	print(result)
 
 	try:
 		if result == []:  # 搜尋不到資料即錯誤
@@ -94,7 +99,7 @@ def getDataList():
 								data_lst.append(result[i])
 
 			data_result=response_data(page, data_lst, last_page)
-	
+			print(type(data_result['data'][0]))
 	except 500:
 		status=500
 		data_result=data_result=error("伺服器內部錯誤")
