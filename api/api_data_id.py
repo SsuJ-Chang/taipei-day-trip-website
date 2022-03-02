@@ -20,6 +20,9 @@ def getData(attractionId):
     data_cursor=cnx.cursor(buffered=False, dictionary=True)
     data_cursor.execute("SELECT * FROM `tpe-attractions` WHERE id=%s", (attractionId,))
     result=data_cursor.fetchone()
+    temp_images_val=json.loads(result['images']) # 把 images 的 value 從 字串 轉回 list
+    result.pop('images', None)
+    result['images']=temp_images_val
     data_cursor.close()
     try:
         if result != None:
