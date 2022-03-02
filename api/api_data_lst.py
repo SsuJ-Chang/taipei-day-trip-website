@@ -10,10 +10,10 @@ trip_pool=pooling.MySQLConnectionPool(
 	pool_name='trip_pool',
 	pool_size=10,
 	pool_reset_session=True,
-	host="localhost",
-	user="root",
-	password="Anferdb0728",
-	database="trip-web"
+	host=config('host'),
+	user=config('user'),
+	password=config('password'),
+	database=config('database')
 )
 
 @api_data_lst.route("/api/attractions")
