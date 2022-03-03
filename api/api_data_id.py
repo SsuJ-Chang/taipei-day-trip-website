@@ -46,7 +46,7 @@ def getData(attractionId):
 
     cnx.close()
     
-    print(result)
+    print(f"查到 id={result['data']['id']} 的資料", result['data']['name'])
 
     final_result=jsonify(result)
     response=make_response(final_result, status, {"content-type":"application/json"})

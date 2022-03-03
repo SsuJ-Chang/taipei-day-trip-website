@@ -26,8 +26,9 @@ def getDataList():
 
 	def query(page, keyword): # 查詢資料 
 		if keyword == "":   # 只用 page 搜尋
-			sql="SELECT * FROM `tpe-attractions` WHERE id BETWEEN %s and %s"
-			val=(page*12+1, page*12+12)
+			# sql="SELECT * FROM `tpe-attractions` WHERE id BETWEEN %s and %s" # 不要用 id 搜尋範圍
+			sql="SELECT * FROM `tpe-attractions` LIMIT %s, %s"
+			val=(page*12, 12)
 		else:  # 只用 keyword 搜尋
 			sql="SELECT * FROM `tpe-attractions` WHERE name LIKE %s"
 			val=("%"+keyword+"%", )
@@ -74,9 +75,9 @@ def getDataList():
 				status=200
 				for datas in result:
 					data_lst.append(datas)
-				data_cursor.execute("SELECT id FROM `tpe-attractions` ORDER BY id DESC LIMIT 1")
+				data_cursor.execute("SELECT COUNT(*) FROM `tpe-attractions`")
 				last_id=data_cursor.fetchone()
-				last_page=last_id['id']/12			
+				last_page=last_id['COUNT(*)']/12			
 			else:  # 用 keyword 搜尋的資料取得邏輯 page 會變成對應的頁數
 				# if page > len(result)/12:  # page 超過總數
 				# 	status=400
