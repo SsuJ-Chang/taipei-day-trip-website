@@ -7,7 +7,7 @@
     <title>Taipei Trip 台北一日遊</title>
     <link href="style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-<body id="bigBody">
+<body>
     <header>
         <div></div>
         <div id="header">
@@ -17,20 +17,66 @@
         </div>
         <div></div>
     </header>
-    <nav class="nav">
-        <div></div>
-        <div>
-            <input type="text" class="funcInput" id="queryKeyword" placeholder="輸入景點名稱" /><button class="funcBtn" id="queryBtn">查詢</button>
-        </div>
-        <div><img id="welcome" src="welcome.png" /></div>
-        <div></div>
-    </nav>
-    <main id="main"></main>
 
+    <div id="scroll">    
+        <nav>
+            <div></div>
+            <div id="nav-1">
+                <div id="nav-2">
+                    <div id="navTitle">輕鬆享受台北一日悠閒</div>
+                    <div id="navDesc">探索每個角落，體驗城市的深度旅遊行程</div>
+                    <div>
+                        <input type="text" id="keywordInput" placeholder="輸入景點名稱查詢" />
+                        <div id="search"><img id="iconSearch" src="icon_search.png" /></div>
+                    </div>
+                </div>
+                <img id="welcome" src="welcome.png" />
+            </div>
+            <div></div>
+        </nav>
 
-    <footer></footer>
+        <main id="main">
+            <div class="attraction"><img src="1.jpg">
+                <div class="info">
+                    <div class="title">新北投溫泉區</div>
+                    <div class="category">歷史建築</div>
+                    <div class="mrt">士林</div>
+                </div>
+            </div>
+            <div class="attraction"><img src="2.jpg">
+                <div class="info">
+                    <div class="title">新北投溫泉區</div>
+                    <div class="category">歷史建築</div>
+                    <div class="mrt">士林</div>    
+                </div>
+            </div>
+            <div class="attraction"><img src="3.jpg">
+                <div class="info">
+                    <div class="title">新北投溫泉區</div>
+                    <div class="category">歷史建築</div>
+                    <div class="mrt">士林</div>
+                </div>
+            </div>
+            <div class="attraction"><img src="4.jpg">
+                <div class="info">
+                    <div class="title">新北投溫泉區</div>
+                    <div class="category">歷史建築</div>
+                    <div class="mrt">士林</div>
+                </div>
+            </div>
+            <div class="attraction"><img src="4.jpg">
+                <div class="info">
+                    <div class="title">新北投溫泉區</div>
+                    <div class="category">歷史建築</div>
+                    <div class="mrt">士林</div>
+                </div>
+            </div>
+        </main>
+
+        <footer>COPYRIGHT © 2021 台北一日遊</footer>    
+    </div>
 
     <script type="text/javascript" src="keyword.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    <!-- <script type="text/javascript" src="script.js"></script> -->
 </body>
 </html>

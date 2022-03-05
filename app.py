@@ -12,7 +12,7 @@ app.config['JSON_SORT_KEYS'] = False # 關閉 JSON 自動排序
 app.register_blueprint(api_data_lst)
 app.register_blueprint(api_data_id)
 
-# Pages
+
 @app.route("/")
 def index():
 	return render_template("index.html")
