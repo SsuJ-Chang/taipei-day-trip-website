@@ -1,72 +1,83 @@
-let imgArr = []; // 景點圖 Array
-let titleArr = []; // 景點名稱 Array      
-function titleText(t) { // 函式：建立「景點名稱」函式 用 createTextNode 
-    let content = document.createTextNode(t);
-    return content;
+let imgArr=[]; // 景點圖 Array
+let nameArr=[]; // 景點名稱 Array
+let mrtArr=[]; // 景點名稱 Array  
+let categoryArr=[]; // 景點名稱 Array 
+
+function infoText(s) { // 用 createTextNode 建立「景點名稱」函式 
+    let text=document.createTextNode(s);
+    return text;
 }
 
-function attractionItems(first, n) { // 函式：建立「景點項目」
-    for (let i = first; i < n; i++) {
-        let titleDiv = document.createElement("div") // 建立 第一層 <div>
-        titleDiv.setAttribute("id", "title-" + i)
-        titleDiv.setAttribute("class", "title")
-        let main = document.getElementById("main"); // 找到 <main>
-        main.appendChild(titleDiv); // 將每個 第一層 <div> 裝進 <main>
+function attractionItems(first, n) { // 建立「景點項目」
+    for (let i=first;i<n;i++) {
+        // 建立 第一層 景點欄位
+        let attractionDiv=document.createElement("div"); // 建立 第一層 景點欄位 <div>
+        attractionDiv.setAttribute("class", "attraction")
+        attractionDiv.setAttribute("id", "attraction-"+i)
 
-        let image = document.createElement("img"); // 建立 第二層 <img> 作為放「景點圖」的容器
-        //i.src=imgArr[0]  // 指定屬性 src
+        let main=document.getElementById("main"); // 找到 <main>
+        main.appendChild(attractionDiv); // 將每個 第一層 .attraction 裝進 <main>
+
+        // 建立 第二層 「景點圖」與「景點資訊」
+        let image=document.createElement("img"); // 建立 第二層 「景點圖」 <img>
         image.setAttribute("src", imgArr[i]); // 指定屬性 src 並指定「景點圖網址」
+        let infoDiv=document.createElement("div"); // 建立 第二層 「景點資訊」 .info
+        infoDiv.setAttribute("class", "info");
+        infoDiv.setAttribute("id", "info-"+i);
 
-        let p = document.createElement("p"); // 建立 第二層 <p> 作為放「景點名稱」的容器
-        p.appendChild(titleText(titleArr[i])); // 使用建立「景點名稱」函式產生文字裝進 <p>
+        let attraction=document.getElementById("attraction-"+i); // 找到 第一層 景點欄位
+        attraction.appendChild(image); // 將 第二層 「景點圖」 <img> 裝進 第一層
+        attraction.appendChild(infoDiv); // 將 第二層 「景點資訊」.info 裝進 第一層
 
-        let currentDiv = document.getElementById("title-" + i); // 找到 第一層 <div> (id="title")
-        currentDiv.appendChild(image); // 將 <img> 裝進 第一層 <div> (id="title")
-        currentDiv.appendChild(p); // 將 <p> 裝進 第一層 <div> (id="title")
+        // 建立 第三層 「景點名稱」、「捷運站」、「景點類型」
+        let nameDiv=document.createElement("div"); // 「景點名稱」
+        nameDiv.setAttribute("class", "name")
+        let attrName=infoText(nameArr[i])
+        nameDiv.appendChild(attrName)
+        let mrtDiv=document.createElement("div"); // 「捷運站」
+        mrtDiv.setAttribute("class", "mrt")
+        let mrt=infoText(mrtArr[i])
+        mrtDiv.appendChild(mrt)
+        let categoryDiv=document.createElement("div"); // 「景點類型」
+        categoryDiv.setAttribute("class", "category")
+        let category=infoText(categoryArr[i])
+        categoryDiv.appendChild(category)
+        // 將「景點名稱」、「捷運站」、「景點類型」裝進 第二層
+        let info=document.getElementById("info-"+i)
+        info.appendChild(nameDiv)
+        info.appendChild(mrtDiv)
+        info.appendChild(categoryDiv)
     }
 }
 
-// 從網頁抓資料並存進「景點圖 Array」與「景點名稱 Array」
-let req = new XMLHttpRequest();
-req.open("get", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
-req.send();
-// req.onload = function(){
-//     let data = JSON.parse(this.responseText);  // 載入資料並轉成 JSON 格式
-//     for(let i=0;i<data.result.results.length;i++){
-//         titleArr.push(data.result.results[i].stitle)
-//         imgArr.push("http:"+data.result.results[i].file.split("https:",2)[1])
+// 網頁 load 進來時產生前 12 筆預設「景點項目」 page=0
+window.addEventListener("load", () => {
+    let src="http://192.168.1.116:3000/api/attractions?page=0";  // local
+    // let src="http://18.213.157.118:3000/api/attractions?page=0"; // EC2
+    fetch(src).then((response)=>{
+        return response.json();
+    }).then((data)=>{
+        for(let i=0;i<12;i++){
+            imgArr.push(data['data'][i]['images'][0]);
+            nameArr.push(data['data'][i]['name']);
+            mrtArr.push(data['data'][i]['mrt']);
+            categoryArr.push(data['data'][i]['category']);
+        }
+        attractionItems(0, 12)
+    })
+})
+
+// 註冊 scroll 按鈕事件
+// let load = document.getElementById("load");
+// load.addEventListener("click", () => {
+//     let titleNums = document.querySelectorAll(".title"); // 查詢 .title 的數量
+//     // let titleNum=document.querySelector(".title")
+//     let newTitles = 0;
+//     if (titleArr.length - titleNums.length >= 8) { // 判斷要產生多少新的「景點項目」
+//         newTitles = 8; // 剩餘項目超過 8 筆新的就產生 8筆
+//     } else { // 不足 8 筆就產生剩餘的數量
+//         newTitles = titleArr.length - titleNums.length;
+//         document.getElementById("load").disabled = true; // 因不能再產生新的「景點項目」故 按鈕停用
 //     }
-//     attractionItems(0,8)  // 網頁 load 進來時產生前 8 筆「景點項目」
-// }
-
-req.addEventListener("load", () => {
-    let data = JSON.parse(req.responseText); // 載入資料並轉成 JSON 格式
-    for (let i = 0; i < data.result.results.length; i++) {
-        titleArr.push(data.result.results[i].stitle)
-        imgArr.push("http:" + data.result.results[i].file.split("https:", 2)[1])
-    }
-    attractionItems(0, 8) // 網頁 load 進來時產生前 8 筆「景點項目」
-})
-
-// 註冊 load 按鈕事件
-let load = document.getElementById("load");
-load.addEventListener("click", () => {
-    let titleNums = document.querySelectorAll(".title"); // 查詢 .title 的數量
-    // let titleNum=document.querySelector(".title")
-    let newTitles = 0;
-    if (titleArr.length - titleNums.length >= 8) { // 判斷要產生多少新的「景點項目」
-        newTitles = 8; // 剩餘項目超過 8 筆新的就產生 8筆
-    } else { // 不足 8 筆就產生剩餘的數量
-        newTitles = titleArr.length - titleNums.length;
-        document.getElementById("load").disabled = true; // 因不能再產生新的「景點項目」故 按鈕停用
-    }
-    attractionItems(titleNums.length, titleNums.length + newTitles) // 產生新的「景點項目」
-})
-
-// window.addEventListener("load", () => {  // 註冊「網頁載入」時的事件
-
-
-
-
-
+//     attractionItems(titleNums.length, titleNums.length + newTitles) // 產生新的「景點項目」
 // })

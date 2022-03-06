@@ -2,13 +2,13 @@ body{
     font-size:20px;font-family:"Noto Sans";margin:0px;
     height:100vh;
     display:grid;
-    grid-template-rows: 54px 1fr;
+    grid-template-rows: 54px 1fr;  /* 固定 header 讓剩下的可自由伸展 */
 }
 body header{
     background-color:#ffffff;height: 54px;
 }
 #scroll{
-    overflow:auto;
+    overflow:auto;  /* scrollbar 開始出現的區域 */
 }
 
 header{  /* grid 切 3 欄 保持中間 1200 px */
@@ -37,11 +37,11 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
 nav{
     height:320px;
     background: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
-    display: grid;
+    display:grid;
     grid-template-columns: 1fr 1200px 1fr;
 }
 #nav-1{
-    display: grid;
+    display:grid;
     grid-template-columns: 690px 1fr;
 }
 #navTitle{
@@ -67,12 +67,12 @@ nav{
     margin-top: 25px;margin-bottom: 86px;
 }
 #search{
-    width:60px;height:46px;display: inline-block;
+    width:60px;height:46px;border: none;padding: 0px;
     background: #448899;border-radius: 0px 5px 5px 0px;
-    position: relative;top: 2px;left: -5px;
+    position: relative;top:8px;left: -5px;
 }
 #iconSearch{
-    position: relative;top: 21%;left: 24%;
+    position: relative;top: 5%;
 }
 #welcome{ /* 自由廣場 */
     width:650px; height:320px;
@@ -81,9 +81,9 @@ nav{
 
 main{
     margin-top: 55px;
-    display: grid;
+    display:grid;
     grid-template-columns: repeat(4, 270px);
-    justify-content: center;
+    justify-content: center;  /* 整堆在容器裡置中 */
     grid-gap: 30px;
 }
 main>.attraction{
@@ -100,23 +100,23 @@ main>.attraction{
     height: 82px;background-color: rgba(250,250,250,1);
     font-family:"Noto Sans TC";font-style: normal;color: #757575;
     font-size: 16px;border-radius: 0px 0px 5px 5px;
-    position: relative; bottom: 87px;
-    display: grid;
-    grid-template-areas:"title title"
-                         "category mrt";
+    position: relative; bottom: 88px;
+    display:grid;
+    grid-template-areas:"name name"
+                         "mrt category";
     align-items:center;
     grid-auto-rows: 50%;
 }
-.title{
-    grid-area:title;
+.name{
+    grid-area:name;
     font-weight: bold;margin-left: 10px;
-}
-.category{
-    grid-area:category;
-    margin-left: 10px;
 }
 .mrt{
     grid-area:mrt;
+    margin-left: 10px;
+}
+.category{
+    grid-area:category;
     margin-right: 10px;text-align: right;
 }
 
