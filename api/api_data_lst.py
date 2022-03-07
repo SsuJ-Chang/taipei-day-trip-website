@@ -60,7 +60,6 @@ def getDataList():
 			"message":msg
 		}
 
-	# data_lst=[]
 	result=query(page, keyword)
 
 	print("page", page)
@@ -70,43 +69,20 @@ def getDataList():
 	try:
 		if result == []:  # 搜尋不到資料即錯誤
 			status=400
-			data_result=error("找不到資料")
+			data_result=error("查無相關景點資料。")
 		else:
 			if page is not None and keyword == "":  # 只用 page 搜尋的資料取得邏輯
 				status=200
-				# for datas in result:
-				# 	data_lst.append(datas)
-
 				data_cursor.execute("SELECT COUNT(*) FROM `tpe-attractions`")
 				last_id=data_cursor.fetchone()
 				print("符合條件的資料總數", last_id['COUNT(*)'])
 				last_page=last_id['COUNT(*)']/12			
 			else:  # 用 keyword 搜尋的資料取得邏輯 page 會變成對應的頁數
-				# if page > len(result)/12:  # page 超過總數
-				# 	status=400
-				# 	data_result=error("找不到資料")
-				# else:
 				status=200
-				
 				data_cursor.execute("SELECT COUNT(*) FROM `tpe-attractions` WHERE name LIKE %s", (f"%{keyword}%", ))
 				last_id=data_cursor.fetchone()
 				print("符合條件的資料總數", last_id['COUNT(*)'])
 				last_page=last_id['COUNT(*)']/12
-
-				# if len(result) <= 12:  # 總資料 <= 12 的頁面資料取得
-				# 	last_page=0
-				# 	# for datas in result:
-				# 	# 	data_lst.append(datas)
-				# 	data_lst=result
-				# else:  # 總資料 >12 的頁面資料取得
-				# 	if page+1 < len(result)/12:  # 非最後一頁的資料
-				# 		last_page=page+1
-				# 		for i in range(page*12, page*12+12):
-				# 			data_lst.append(result[i])
-				# 	else:  # 最後一頁的資料
-				# 		last_page=0
-				# 		for i in range(page*12, len(result)):
-				# 			data_lst.append(result[i])
 
 			data_result=response_data(page, result, last_page)
 

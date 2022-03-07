@@ -1,14 +1,16 @@
 body{
-    font-size:20px;font-family:"Noto Sans";margin:0px;
+    font-size:16px;font-family:"Noto Sans";margin:0px;
     height:100vh;
     display:grid;
     grid-template-rows: 54px 1fr;  /* 固定 header 讓剩下的可自由伸展 */
 }
 body header{
-    background-color:#ffffff;height: 54px;
+    background-color:#ffffff;
 }
 #scroll{
     overflow:auto;  /* scrollbar 開始出現的區域 */
+    overflow-x: hidden;  /* 隱藏 x 軸向的 scrollbar */
+    -ms-overflow-x: hidden;  /* for IE8 */
 }
 
 header{  /* grid 切 3 欄 保持中間 1200 px */
@@ -20,7 +22,7 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     grid-template-columns: 1fr 85px 87px;
 }
 #header>.logo{
-    margin-top: 10px;margin-bottom: 10px;line-height: 34px;
+    line-height: 34px;margin:10px 0px 10px 0px;
     font-size: 30px;color: #448899;font-family:"Noto Sans";
 }
 #schedule{
@@ -88,19 +90,19 @@ main{
 }
 main>.attraction{
     height:242px;margin:10px;
-    border: 1px solid #bbbbbb;border-radius: 5px;
+    border: 1px solid #dddddd;border-radius: 5px;
 }
 .attraction>img{
     width:100%;
     height:100%;
     object-fit:cover;
-    background-color: #ffffff;
+    border-radius: 4px;
 }
 .info{
     height: 82px;background-color: rgba(250,250,250,1);
     font-family:"Noto Sans TC";font-style: normal;color: #757575;
     font-size: 16px;border-radius: 0px 0px 5px 5px;
-    position: relative; bottom: 88px;
+    position: relative; bottom: 86px;
     display:grid;
     grid-template-areas:"name name"
                          "mrt category";
@@ -109,7 +111,7 @@ main>.attraction{
 }
 .name{
     grid-area:name;
-    font-weight: bold;margin-left: 10px;
+    font-weight: bolder;margin-left: 10px;
 }
 .mrt{
     grid-area:mrt;
@@ -118,6 +120,9 @@ main>.attraction{
 .category{
     grid-area:category;
     margin-right: 10px;text-align: right;
+}
+.errorMsg{
+    font-weight: bolder;text-align: center;
 }
 
 footer{
@@ -128,11 +133,6 @@ footer{
     text-align: center;margin-top: 55px;
 }
 
-@media screen{
-    main>.attraction{
-        opacity:0.9;
-    }
-}
 @media (max-width:1200px){
 	header{
         grid-template-columns: 1fr;
@@ -170,6 +170,23 @@ footer{
 		grid-template-columns: 90%;
 	}
 }
+@media (max-width:520px){
+    #nav-1{
+        grid-template-columns: 1fr;z-index:2;
+    }
+    #nav-2{
+        padding-left: 20px;z-index:2;
+    }
+    #keywordInput{
+        width:230px;
+    }
+    #welcome{ /* 自由廣場 */
+        width:650px;height:320px;
+        margin-left: 150px;
+        z-index:1;
+        position: relative;bottom: 320px;
+    }
+}
 @media (max-width:360px){
     nav{
         height:280px
@@ -197,9 +214,16 @@ footer{
         grid-gap: 15px;
     }
 }
-@media (min-width:1201px){
-    main{
-        width:1200px;
-        margin-left:auto;margin-right:auto;
-    }
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+background: #ffffff; 
+}
+::-webkit-scrollbar-thumb {
+background: #bbb; 
+}
+::-webkit-scrollbar-thumb:hover {
+background: #999;
 }

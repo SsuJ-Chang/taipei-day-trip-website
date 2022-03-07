@@ -1,15 +1,18 @@
+let page=0; // 頁數
+let src="http://192.168.1.116:3000/api/attractions?page="+page;  // local
+// let src="http://18.213.157.118:3000/api/attractions?page="+page; // EC2
 let imgArr=[]; // 景點圖 Array
 let nameArr=[]; // 景點名稱 Array
-let mrtArr=[]; // 景點名稱 Array  
-let categoryArr=[]; // 景點名稱 Array 
+let mrtArr=[]; // 捷運站 Array  
+let categoryArr=[]; // 景點分類 Array
 
-function infoText(s) { // 用 createTextNode 建立「景點名稱」函式 
+function infoText(s) { // 用 createTextNode 建立文字節點 
     let text=document.createTextNode(s);
     return text;
 }
 
-function attractionItems(first, n) { // 建立「景點項目」
-    for (let i=first;i<n;i++) {
+function createAttractions(first, n){ // 建立「景點項目」
+    for (let i=first;i<n;i++){
         // 建立 第一層 景點欄位
         let attractionDiv=document.createElement("div"); // 建立 第一層 景點欄位 <div>
         attractionDiv.setAttribute("class", "attraction")
@@ -36,7 +39,7 @@ function attractionItems(first, n) { // 建立「景點項目」
         nameDiv.appendChild(attrName)
         let mrtDiv=document.createElement("div"); // 「捷運站」
         mrtDiv.setAttribute("class", "mrt")
-        let mrt=infoText(mrtArr[i])
+        let mrt=infoText(mrtArr[i]+"站")
         mrtDiv.appendChild(mrt)
         let categoryDiv=document.createElement("div"); // 「景點類型」
         categoryDiv.setAttribute("class", "category")
@@ -50,34 +53,11 @@ function attractionItems(first, n) { // 建立「景點項目」
     }
 }
 
-// 網頁 load 進來時產生前 12 筆預設「景點項目」 page=0
-window.addEventListener("load", () => {
-    let src="http://192.168.1.116:3000/api/attractions?page=0";  // local
-    // let src="http://18.213.157.118:3000/api/attractions?page=0"; // EC2
-    fetch(src).then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        for(let i=0;i<12;i++){
-            imgArr.push(data['data'][i]['images'][0]);
-            nameArr.push(data['data'][i]['name']);
-            mrtArr.push(data['data'][i]['mrt']);
-            categoryArr.push(data['data'][i]['category']);
-        }
-        attractionItems(0, 12)
-    })
-})
-
-// 註冊 scroll 按鈕事件
-// let load = document.getElementById("load");
-// load.addEventListener("click", () => {
-//     let titleNums = document.querySelectorAll(".title"); // 查詢 .title 的數量
-//     // let titleNum=document.querySelector(".title")
-//     let newTitles = 0;
-//     if (titleArr.length - titleNums.length >= 8) { // 判斷要產生多少新的「景點項目」
-//         newTitles = 8; // 剩餘項目超過 8 筆新的就產生 8筆
-//     } else { // 不足 8 筆就產生剩餘的數量
-//         newTitles = titleArr.length - titleNums.length;
-//         document.getElementById("load").disabled = true; // 因不能再產生新的「景點項目」故 按鈕停用
-//     }
-//     attractionItems(titleNums.length, titleNums.length + newTitles) // 產生新的「景點項目」
-// })
+function errorMsg(message){  // 顯示錯誤
+    let messageDiv=document.createElement("div");
+    messageDiv.setAttribute("class", "errorMsg")
+    let errorMessage=infoText(message)
+    messageDiv.appendChild(errorMessage)
+    let main=document.getElementById("main");
+    main.appendChild(messageDiv);
+}
