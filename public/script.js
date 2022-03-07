@@ -1,6 +1,6 @@
 let page=0; // 頁數
-let src="http://192.168.1.116:3000/api/attractions?page="+page;  // local
-// let src="http://18.213.157.118:3000/api/attractions?page="+page; // EC2
+// let src="http://192.168.1.116:3000/api/attractions?page="+page;  // local
+let src="http://18.213.157.118:3000/api/attractions?page="+page; // EC2
 let imgArr=[]; // 景點圖 Array
 let nameArr=[]; // 景點名稱 Array
 let mrtArr=[]; // 捷運站 Array  
