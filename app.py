@@ -4,7 +4,7 @@ from api.api_data_id import api_data_id
 from decouple import config
 from mysql.connector import pooling
 
-app=Flask(__name__)
+app=Flask(__name__, static_folder="public", static_url_path="/")
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.config['JSON_SORT_KEYS'] = False # 關閉 JSON 自動排序
@@ -12,7 +12,7 @@ app.config['JSON_SORT_KEYS'] = False # 關閉 JSON 自動排序
 app.register_blueprint(api_data_lst)
 app.register_blueprint(api_data_id)
 
-# Pages
+
 @app.route("/")
 def index():
 	return render_template("index.html")

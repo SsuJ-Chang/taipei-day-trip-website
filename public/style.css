@@ -1,0 +1,229 @@
+body{
+    font-size:16px;font-family:"Noto Sans";margin:0px;
+    height:100vh;
+    display:grid;
+    grid-template-rows: 54px 1fr;  /* 固定 header 讓剩下的可自由伸展 */
+}
+body header{
+    background-color:#ffffff;
+}
+#scroll{
+    overflow:auto;  /* scrollbar 開始出現的區域 */
+    overflow-x: hidden;  /* 隱藏 x 軸向的 scrollbar */
+    -ms-overflow-x: hidden;  /* for IE8 */
+}
+
+header{  /* grid 切 3 欄 保持中間 1200 px */
+    display:grid;
+    grid-template-columns: 1fr 1200px 1fr;
+}
+#header{  /* 主要顯示 grid 切 3 欄 左邊 logo 右邊會員功能 */
+    display:grid;
+    grid-template-columns: 1fr 85px 87px;
+}
+#header>.logo{
+    line-height: 34px;margin:10px 0px 10px 0px;
+    font-size: 30px;color: #448899;font-family:"Noto Sans";
+}
+#schedule{
+    font-size:16px;color:#666666;
+    width: 64px;margin:auto 10px auto 10px;
+    text-align:center;
+}
+#signinup{
+    font-size:16px;color:#666666;
+    width: 72px;margin:auto 10px auto 10px;
+    text-align:center;
+}
+
+nav{
+    height:320px;
+    background: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+    display:grid;
+    grid-template-columns: 1fr 1200px 1fr;
+}
+#nav-1{
+    display:grid;
+    grid-template-columns: 690px 1fr;
+}
+#navTitle{
+    font-family:"Noto Sans TC";
+    font-style: normal;font-weight: bold;
+    font-size: 28px;line-height: 41px;color: #F8F8F8;
+    text-shadow: 0px 0px 30px #AABBCC;
+    height:41px;margin-top: 85px;margin-bottom: 15px;
+}
+#navDesc{
+    font-family: "Noto Sans TC";
+    font-style: normal;font-weight: normal;
+    font-size: 16px;line-height: 22px;color: #F8F8F8;
+    height:22px;
+}
+#keywordInput{
+    width:400px;height:26px;
+    font-family: "Noto Sans TC";
+    font-style: normal;font-weight: bold;
+    font-size: 16px;line-height: 13px;color: #757575;
+    border-radius: 5px 0px 0px 5px;border: 0;
+    outline: none;padding: 10px 0px 10px 10px;
+    margin-top: 25px;margin-bottom: 86px;
+}
+#search{
+    width:60px;height:46px;border: none;padding: 0px;
+    background: #448899;border-radius: 0px 5px 5px 0px;
+    position: relative;top:8px;left: -5px;
+}
+#iconSearch{
+    position: relative;top: 5%;
+}
+#welcome{ /* 自由廣場 */
+    width:650px; height:320px;
+    margin-right: 232px;
+}
+
+main{
+    margin-top: 55px;
+    display:grid;
+    grid-template-columns: repeat(4, 270px);
+    justify-content: center;  /* 整堆在容器裡置中 */
+    grid-gap: 30px;
+}
+main>.attraction{
+    height:242px;margin:10px;
+    border: 1px solid #dddddd;border-radius: 5px;
+}
+.attraction>img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius: 4px;
+}
+.info{
+    height: 82px;background-color: rgba(250,250,250,1);
+    font-family:"Noto Sans TC";font-style: normal;color: #757575;
+    font-size: 16px;border-radius: 0px 0px 5px 5px;
+    position: relative; bottom: 86px;
+    display:grid;
+    grid-template-areas:"name name"
+                         "mrt category";
+    align-items:center;
+    grid-auto-rows: 50%;
+}
+.name{
+    grid-area:name;
+    font-weight: bolder;margin-left: 10px;
+}
+.mrt{
+    grid-area:mrt;
+    margin-left: 10px;
+}
+.category{
+    grid-area:category;
+    margin-right: 10px;text-align: right;
+}
+.errorMsg{
+    font-weight: bolder;text-align: center;
+}
+
+footer{
+    height:104px; background-color: #757575;
+    font-family: "Noto Sans TC";
+    font-style: normal;font-weight: bold;
+    font-size: 16px;line-height: 104px;color: #ffffff;
+    text-align: center;margin-top: 55px;
+}
+
+@media (max-width:1200px){
+	header{
+        grid-template-columns: 1fr;
+    }
+    .logo{
+        padding-left: 10px;
+    }
+    #nav-1{
+        grid-template-columns: 500px 1fr;
+    }
+    #nav-2{
+        padding-left: 10px;
+    }
+    main{
+		grid-template-columns: repeat(2, 40%);
+	}
+}
+@media (max-width:600px){
+	header{
+        grid-template-columns: 1fr;
+    }
+    .logo{
+        padding-left: 10px;
+    }
+    #nav-1{
+        grid-template-columns: 350px 1fr;
+    }
+    #nav-2{
+        padding-left: 10px;
+    }
+    #keywordInput{
+        width:250px;
+    }
+    main{
+		grid-template-columns: 90%;
+	}
+}
+@media (max-width:520px){
+    #nav-1{
+        grid-template-columns: 1fr;z-index:2;
+    }
+    #nav-2{
+        padding-left: 20px;z-index:2;
+    }
+    #keywordInput{
+        width:230px;
+    }
+    #welcome{ /* 自由廣場 */
+        width:650px;height:320px;
+        margin-left: 150px;
+        z-index:1;
+        position: relative;bottom: 320px;
+    }
+}
+@media (max-width:360px){
+    nav{
+        height:280px
+    }
+    #navTitle{
+        margin-top: 65px;margin-bottom: 15px;
+    }
+    #nav-1{
+        grid-template-columns: 1fr;z-index:2;
+    }
+    #nav-2{
+        padding-left: 20px;z-index:2;
+    }
+    #keywordInput{
+        width:230px;z-index:2;
+        margin-top: 25px;margin-bottom: 66px;
+    }
+    #welcome{ /* 自由廣場 */
+        width:276px;height:148px;
+        margin-left: 148px;
+        z-index:1;
+        position: relative;bottom: 148px;
+    }
+    main{
+        grid-gap: 15px;
+    }
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+background: #ffffff; 
+}
+::-webkit-scrollbar-thumb {
+background: #bbb; 
+}
+::-webkit-scrollbar-thumb:hover {
+background: #999;
+}
