@@ -1,4 +1,3 @@
-from ast import And
 from flask import *
 from decouple import config
 from mysql.connector import pooling
