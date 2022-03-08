@@ -1,5 +1,5 @@
 body{
-    font-size:16px;font-family:"Noto Sans";margin:0px;
+    font-size:16px;font-family:"Noto Sans TC";margin:0px;
     height:100vh;
     display:grid;
     grid-template-rows: 54px 1fr;  /* 固定 header 讓剩下的可自由伸展 */
@@ -23,8 +23,9 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
 }
 #header>.logo{
     line-height: 34px;margin:10px 0px 10px 0px;
-    font-size: 30px;color: #448899;font-family:"Noto Sans";
+    font-size: 30px;color: #448899;font-family:"Noto Sans TC";
 }
+.logo>b{cursor: pointer;}  /* 改變游標樣式 */
 #schedule{
     font-size:16px;color:#666666;
     width: 64px;margin:auto 10px auto 10px;
@@ -32,7 +33,7 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
 }
 #signinup{
     font-size:16px;color:#666666;
-    width: 72px;margin:auto 10px auto 10px;
+    width: 71px;margin:auto 10px auto 10px;
     text-align:center;
 }
 
@@ -131,99 +132,4 @@ footer{
     font-style: normal;font-weight: bold;
     font-size: 16px;line-height: 104px;color: #ffffff;
     text-align: center;margin-top: 55px;
-}
-
-@media (max-width:1200px){
-	header{
-        grid-template-columns: 1fr;
-    }
-    .logo{
-        padding-left: 10px;
-    }
-    #nav-1{
-        grid-template-columns: 500px 1fr;
-    }
-    #nav-2{
-        padding-left: 10px;
-    }
-    main{
-		grid-template-columns: repeat(2, 40%);
-	}
-}
-@media (max-width:600px){
-	header{
-        grid-template-columns: 1fr;
-    }
-    .logo{
-        padding-left: 10px;
-    }
-    #nav-1{
-        grid-template-columns: 350px 1fr;
-    }
-    #nav-2{
-        padding-left: 10px;
-    }
-    #keywordInput{
-        width:250px;
-    }
-    main{
-		grid-template-columns: 90%;
-	}
-}
-@media (max-width:520px){
-    #nav-1{
-        grid-template-columns: 1fr;z-index:2;
-    }
-    #nav-2{
-        padding-left: 20px;z-index:2;
-    }
-    #keywordInput{
-        width:230px;
-    }
-    #welcome{ /* 自由廣場 */
-        width:650px;height:320px;
-        margin-left: 150px;
-        z-index:1;
-        position: relative;bottom: 320px;
-    }
-}
-@media (max-width:360px){
-    nav{
-        height:280px
-    }
-    #navTitle{
-        margin-top: 65px;margin-bottom: 15px;
-    }
-    #nav-1{
-        grid-template-columns: 1fr;z-index:2;
-    }
-    #nav-2{
-        padding-left: 20px;z-index:2;
-    }
-    #keywordInput{
-        width:230px;z-index:2;
-        margin-top: 25px;margin-bottom: 66px;
-    }
-    #welcome{ /* 自由廣場 */
-        width:276px;height:148px;
-        margin-left: 148px;
-        z-index:1;
-        position: relative;bottom: 148px;
-    }
-    main{
-        grid-gap: 15px;
-    }
-}
-
-::-webkit-scrollbar{
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-background: #ffffff; 
-}
-::-webkit-scrollbar-thumb {
-background: #bbb; 
-}
-::-webkit-scrollbar-thumb:hover {
-background: #999;
 }
