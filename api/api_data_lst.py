@@ -6,7 +6,7 @@ api_data_lst=Blueprint("api_data_lst", __name__, template_folder="templates")
 
 trip_pool=pooling.MySQLConnectionPool(
 	pool_name='trip_pool',
-	pool_size=10,
+	pool_size=1,
 	pool_reset_session=True,
 	host=config('host'),
 	user=config('user'),
@@ -34,9 +34,12 @@ def getDataList():
 			val=("%"+keyword+"%", page*12, 12)
 		data_cursor.execute(sql, val)
 		result=data_cursor.fetchall()
+		print(result[0])
+		print(type(result[0]))
 		for i in range(len(result)):  # 把 images 的 value 從 字串 轉回 list
 			temp_images_val=json.loads(result[i]['images'])
-			result[i].pop('images', None)
+			print(temp_images_val)
+			print(type(temp_images_val))
 			result[i]['images']=temp_images_val
 		return result
 
