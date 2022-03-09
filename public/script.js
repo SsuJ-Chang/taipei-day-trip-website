@@ -1,11 +1,3 @@
-let page=0; // 頁數
-// let src="http://192.168.1.116:3000/api/attractions?page="+page;  // local
-let src="http://18.213.157.118:3000/api/attractions?page="+page; // EC2
-let imgArr=[]; // 景點圖 Array
-let nameArr=[]; // 景點名稱 Array
-let mrtArr=[]; // 捷運站 Array  
-let categoryArr=[]; // 景點分類 Array
-
 function infoText(s) { // 用 createTextNode 建立文字節點 
     let text=document.createTextNode(s);
     return text;
