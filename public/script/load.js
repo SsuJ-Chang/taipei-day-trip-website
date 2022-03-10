@@ -1,9 +1,3 @@
-let page=0; // 頁數
-let src="api/attractions?page="+page;
-let imgArr=[]; // 景點圖 Array
-let nameArr=[]; // 景點名稱 Array
-let mrtArr=[]; // 捷運站 Array  
-let categoryArr=[]; // 景點分類 Array
 let fetching=false; // 是否正在 fetch 
 
 // 觀察畫面是否到底部 以 footer 為目標
@@ -23,6 +17,7 @@ let callback=(e)=>{ // 觸發條件後要處理的回呼函式
             }).then((data)=>{
                 console.log("回應資料", data);
                 for(let i=0;i<data['data'].length;i++){
+                    idArr.push(data['data'][i]['id']);
                     imgArr.push(data['data'][i]['images'][0]);
                     nameArr.push(data['data'][i]['name']);
                     mrtArr.push(data['data'][i]['mrt']);

@@ -9,6 +9,7 @@ search.addEventListener("click", ()=>{
 
     // page=0 並清空所有 Array
     page=0;
+    idArr=[];
     imgArr=[];
     nameArr=[];
     mrtArr=[]; 
@@ -30,11 +31,13 @@ search.addEventListener("click", ()=>{
                 observer.unobserve(footer);  // 沒有資料就取消觀察目標 避免觸發 load.js
             }else{
                 for(i=0;i<data['data'].length;i++){
+                    idArr.push(data['data'][i]['id']);
                     imgArr.push(data['data'][i]['images'][0]);
                     nameArr.push(data['data'][i]['name']);
                     mrtArr.push(data['data'][i]['mrt']);
                     categoryArr.push(data['data'][i]['category']);
                 }
+                console.log(idArr)
                 createAttractions(page*12, page*12+data['data'].length);
                 page=data['nextPage'];
                 console.log("下一頁" ,page);
