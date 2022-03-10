@@ -34,12 +34,8 @@ def getDataList():
 			val=("%"+keyword+"%", page*12, 12)
 		data_cursor.execute(sql, val)
 		result=data_cursor.fetchall()
-		print(result[0])
-		print(type(result[0]))
 		for i in range(len(result)):  # 把 images 的 value 從 字串 轉回 list
 			temp_images_val=json.loads(result[i]['images'])
-			print(temp_images_val)
-			print(type(temp_images_val))
 			result[i]['images']=temp_images_val
 		return result
 
@@ -95,6 +91,6 @@ def getDataList():
 	data_cursor.close()
 	cnx.close()
 	
-	final_result=jsonify(data_result) # 可能不需要
+	# final_result=jsonify(data_result) # 可能不需要
 	response=make_response(data_result, status, {"content-type":"application/json"})
 	return response
