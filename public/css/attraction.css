@@ -43,16 +43,49 @@
 #formDesc{
     margin: 0px 20px 15px 20px;
 }
-#bookingDate{
-    margin: 0px 20px 15px 20px;
+#form{
+    display:grid;
+    grid-template-areas:"date input input"
+                        "time morning evening"
+                        "feeTitle fee fee"
+                        "order order order";
+    grid-template-columns: 105px 80px 1fr;
+    align-items: center;
 }
-#bookingDate>input{
-    margin-top: 15px;display:inline;
-    width:193px;height:35px;
+#bookingDate{
+    grid-area: date;
     
+    margin: 0px 0px 0px 20px;
+    font-weight: bold;
+}
+#dateInput{
+    grid-area: input;
+    width:193px;height:35px;
 }
 #bookingTime{
-    display:block;
+    grid-area: time;
+    margin: 15px 0px 15px 20px;
+    font-weight: bold;
+}
+#morning{
+    grid-area: morning;
+}
+#evening{
+    grid-area: evening;
+}
+#feeTitle{
+    grid-area: feeTitle;
+    margin: 0px 0px 0px 20px;font-weight: bold;
+}
+#fee{
+    grid-area: fee;
+}
+#orderBtn{
+    grid-area: order;
+    width:154px; height:36px;border: none;
+    color:#fff;background-color: #448899;
+    font-size: 19px;font-weight: 400; border-radius: 5px;
+    margin: 25px 0px 0px 20px;
 }
 
 
