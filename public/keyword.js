@@ -2,9 +2,11 @@
 let search=document.getElementById("search");
 search.addEventListener("click", ()=>{
     console.log("KEYWORD QUERY")
-    let keywordInput=document.getElementById("keywordInput").value;  // 接收 input
+    let input=document.getElementById("keywordInput");
+    let keywordInput=input.value;  // 接收 input
     src="api/attractions?keyword="+keywordInput;
-    
+    input.value="";  // 清空 input
+
     // page=0 並清空所有 Array
     page=0;
     imgArr=[];
