@@ -34,6 +34,7 @@ nav{
     width:60px;height:46px;border: none;padding: 0px;
     background: #448899;border-radius: 0px 5px 5px 0px;
     position: relative;top:8px;left: -5px;
+    cursor:pointer;
 }
 #iconSearch{
     position: relative;top: 5%;
@@ -53,6 +54,7 @@ main{
 main>.attraction{
     height:242px;margin:10px;
     border: 1px solid #dddddd;border-radius: 5px;
+    cursor:pointer;
 }
 .attraction>img{
     width:100%;

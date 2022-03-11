@@ -22,7 +22,7 @@ function createAttractions(first, n){ // 建立「景點項目」
         let attractionDiv=document.createElement("div"); // 建立 第一層 景點欄位 <div>
         attractionDiv.setAttribute("class", "attraction");
         attractionDiv.setAttribute("id", "attraction-"+i);
-        attractionDiv.setAttribute("onclick", "getId()"); // 給予點擊事件
+        attractionDiv.setAttribute("onclick", "getId(this.id)"); // 給予點擊事件
 
         let main=document.getElementById("main"); // 找到 <main>
         main.appendChild(attractionDiv); // 將每個 第一層 .attraction 裝進 <main>
@@ -69,28 +69,22 @@ function errorMsg(message){  // 顯示錯誤
 }
 
 
-let getId=(e)=>{ // 取得點擊目標 id
-    e=e || window.event;
-    e=e.target
-    console.log("e是啥",e);
-    console.log(e.parentNode.id); // 父 Node id 名稱
-    let idx=Number(e.parentNode.id.split("-")[1]) // 取得 id 尾數作為 index
+// function getId(event){ // 取得點擊目標 id
+//     let e=event || window.event;
+//     e=e.target;
+//     console.log(e.parentNode.id); // 父 Node id 名稱
+//     let idx=Number(e.parentNode.id.split("-")[1]) // 取得 id 尾數作為 index
+//     let id=idArr[idx]  // 從 id array 中取得景點真正 id
+//     console.log("景點 id ", id);
+
+//     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
+// }
+
+function getId(attrId){ // 取得點擊目標 id
+    console.log(attrId); // 父 Node id 名稱
+    let idx=Number(attrId.split("-")[1]) // 取得 id 尾數作為 index
     let id=idArr[idx]  // 從 id array 中取得景點真正 id
     console.log("景點 id ", id);
 
     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
 }
-
-// let attrs=document.querySelectorAll(".attraction");
-// for(let i=0;i<attrs.length;i++){
-//     attrs[i].addEventListener("click", (e)=>{
-//         console.log("clicked");
-//         // e=e || window.event;
-//         // e=e.target;
-//         // console.log("e是啥",e);
-//         // console.log(e.parentNode.id); // 父 Node id 名稱
-//         // let idx=Number(e.parentNode.id.split("-")[1])
-//         // let id=idArr[idx]
-//         // console.log(id);
-//     })
-// }

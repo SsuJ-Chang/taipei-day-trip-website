@@ -1,5 +1,4 @@
 #summary{
-    border-top: 1px solid #e8e8e8;
     font-size: 16px;color: #666;
     display:grid;
     grid-template-columns: 1fr 570px 630px 1fr;
@@ -54,13 +53,12 @@
 }
 #bookingDate{
     grid-area: date;
-    
     margin: 0px 0px 0px 20px;
     font-weight: bold;
 }
 #dateInput{
     grid-area: input;
-    width:193px;height:35px;
+    width:193px;height:35px;font-size: 16px;
 }
 #bookingTime{
     grid-area: time;
@@ -69,9 +67,16 @@
 }
 #morning{
     grid-area: morning;
+    font-size: 16px;width:18px;height:18px;
+    margin:5px 6px 0px 0px;
+}
+.radioText{
+    position: relative;bottom: 3px;
 }
 #evening{
     grid-area: evening;
+    font-size: 16px;width:18px;height:18px;
+    margin:5px 6px 0px 0px;
 }
 #feeTitle{
     grid-area: feeTitle;
@@ -82,12 +87,11 @@
 }
 #orderBtn{
     grid-area: order;
-    width:154px; height:36px;border: none;
+    width:155px; height:36px;border: none;
     color:#fff;background-color: #448899;
     font-size: 19px;font-weight: 400; border-radius: 5px;
-    margin: 25px 0px 0px 20px;
+    margin: 25px 0px 0px 20px;cursor: pointer;
 }
-
 
 #hr{
     display:grid;
@@ -102,6 +106,7 @@
     font-size: 16px;color: #666;
     display:grid;
     grid-template-columns: 1fr 1200px 1fr;
+    align-items: center;
 }
 #addressTitle{
     font-weight: bold;margin-top: 20px;
