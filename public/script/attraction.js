@@ -25,6 +25,9 @@ window.addEventListener("load", ()=>{
         addressDiv.append(address);
         transportDiv.append(transport);
 
+        imageArr=data['data']['images'];
+        console.log(imageArr);
+        
     }).catch((error)=>{
         console.log(error)
     })

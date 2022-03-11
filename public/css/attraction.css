@@ -82,13 +82,10 @@ label{
     margin-bottom:-3px;
 }
 label::after{
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    transition: all .5s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer; width: 14px; height: 14px;border-radius: 50%;
-    position: absolute;  top: 10%; left: 12%;
+    position: absolute;  top: 11.5%; left: 11%;
     z-index: 1; content: '';
 }
 input:checked+label::after{
