@@ -67,17 +67,38 @@
 }
 #morning{
     grid-area: morning;
-    font-size: 16px;width:18px;height:18px;
-    margin:5px 6px 0px 0px;
-}
-.radioText{
-    position: relative;bottom: 3px;
+    font-size: 16px;
+    margin:5px 6px 0px 0px;display:none;
 }
 #evening{
     grid-area: evening;
-    font-size: 16px;width:18px;height:18px;
-    margin:5px 6px 0px 0px;
+    font-size: 16px;
+    margin:5px 6px 0px 0px;display:none;
 }
+/* 變更 radio 樣式 */
+label{
+    display: inline-block; width: 18px; height: 18px;
+    background:#fff;border-radius: 50%; position: relative;
+    margin-bottom:-3px;
+}
+label::after{
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+    cursor: pointer; width: 14px; height: 14px;border-radius: 50%;
+    position: absolute;  top: 10%; left: 12%;
+    z-index: 1; content: '';
+}
+input:checked+label::after{
+    background:#448899;
+}
+
+.radioText{
+    position: relative;bottom: 0px;
+}
+
 #feeTitle{
     grid-area: feeTitle;
     margin: 0px 0px 0px 20px;font-weight: bold;

@@ -40,8 +40,14 @@
                         <div id="bookingDate">選擇日期：</div>
                         <input type="date" id="dateInput" name="date">
                         <div id="bookingTime">選擇時間：</div>
-                        <div><input type="radio" name="time" value="morning" id="morning"><span class="radioText">上半天</span></div>
-                        <div><input type="radio" name="time" value="evening" id="evening"><span class="radioText">下半天</span></div>
+                        <div>
+                            <input type="radio" name="time" value="morning" id="morning"><label for="morning"></label>
+                            <span class="radioText">上半天</span>
+                        </div>
+                        <div>
+                            <input type="radio" name="time" value="evening" id="evening"><label for="evening"></label>
+                            <span class="radioText">下半天</span>
+                        </div>
                         <div id="feeTitle">導覽費用：</div><div id="fee">新台幣 2000 元</div>
                         <button id="orderBtn">開始預訂行程</button>
                     </form>
