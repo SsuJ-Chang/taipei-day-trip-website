@@ -54,7 +54,7 @@ main{
 main>.attraction{
     height:242px;margin:10px;
     border: 1px solid #dddddd;border-radius: 5px;
-    cursor:pointer;
+    cursor:pointer;z-index: 999;
 }
 .attraction>img{
     width:100%;
