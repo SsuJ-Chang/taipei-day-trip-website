@@ -25,10 +25,12 @@
     <div id="scroll">    
         <div id="summary">
             <div></div>
-            <div id="images">
-                <img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg">
-                <div id="leftArrow"><img src="/pic/btn_leftArrow.png"></div>
-                <div id="rightArrow"><img src="/pic/btn_rightArrow.png"></div>
+            <div id="imageField">
+                <div id="images"></div>
+                <div class="arrows">
+                    <div id="leftArrow"><img src="/pic/btn_leftArrow.png"></div>
+                    <div id="rightArrow"><img src="/pic/btn_rightArrow.png"></div>
+                </div>
             </div>
             <div id="bookingField">
                 <div id="name"></div>
@@ -41,14 +43,14 @@
                         <input type="date" id="dateInput" name="date">
                         <div id="bookingTime">選擇時間：</div>
                         <div>
-                            <input type="radio" name="time" value="morning" id="morning"><label for="morning"></label>
+                            <input type="radio" name="time" value="morning" id="morning" class="time"><label for="morning"></label>
                             <span class="radioText">上半天</span>
                         </div>
                         <div>
-                            <input type="radio" name="time" value="evening" id="evening"><label for="evening"></label>
+                            <input type="radio" name="time" value="evening" id="evening" class="time"><label for="evening"></label>
                             <span class="radioText">下半天</span>
                         </div>
-                        <div id="feeTitle">導覽費用：</div><div id="fee">新台幣 2000 元</div>
+                        <div id="feeTitle">導覽費用：</div><div class="fee" id="fee-1">新台幣 2000 元</div><div class="fee" id="fee-2">新台幣 2500 元</div>
                         <button id="orderBtn">開始預訂行程</button>
                     </form>
                 </div>

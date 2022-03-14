@@ -10,8 +10,9 @@ body header{
 }
 #scroll{
     overflow:auto;  /* scrollbar 開始出現的區域 */
-    overflow-x: hidden;  /* 隱藏 x 軸向的 scrollbar */
-    -ms-overflow-x: hidden;  /* for IE8 */
+    /* 隱藏 x 軸向的 scrollbar  -ms- for IE8*/
+    /* overflow-x: hidden;  
+    -ms-overflow-x: hidden; */
 }
 
 header{  /* grid 切 3 欄 保持中間 1200 px */
@@ -27,7 +28,7 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     font-size: 30px;color: #448899;font-family:"Noto Sans TC";
 }
 .logo>b{cursor: pointer;}  /* 改變游標樣式 */
-#schedule{
+#itinerary{
     font-size:16px;color:#666666;
     width: 64px;margin:auto 10px auto 10px;
     text-align:center;
