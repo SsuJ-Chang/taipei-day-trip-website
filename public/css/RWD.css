@@ -16,6 +16,12 @@
 		grid-template-columns: repeat(2, 40%);
 	}
     /* attraction */
+    #summary{
+        grid-template-columns: 1fr 0.75fr;
+    }
+    #images{
+        width:100%;
+    }
     #detail{
         display:grid;
         grid-template-columns: 1fr;
@@ -44,20 +50,14 @@
 	}
     /* attraction */
     #summary{
-        grid-template-columns: 1fr;
-    }
-    #images{
-        width:600px;margin: 37px 0px 0px 0px;
+        grid-template-columns: 95%;
     }
     .arrows{
         margin:0px 10px 0px 10px;
-        bottom:238px;
+        bottom:221px;
     }
     #bookingField{
         margin: 20px 10px 0px 10px;
-    }
-    #bookingForm{
-        width:580px;height:302px;
     }
 }
 @media (max-width:520px){
@@ -105,15 +105,17 @@
         grid-gap: 15px;
     }
     /* attraction */
+    #summary{
+        grid-template-columns: 100%;
+    }
+    #imageField{
+        margin: 37px 0px 0px 0px;
+    }
     #images{
-        width:360px;height:350px;margin: 37px 0px 0px 0px;
+        width:360px;height:350px;
     }
     .arrows{
-        margin:0px 10px 0px 10px;
         bottom:193px;
-    }
-    #bookingField{
-        margin: 20px 10px 0px 10px;
     }
     #bookingForm{
         width:340px;height:302px;
