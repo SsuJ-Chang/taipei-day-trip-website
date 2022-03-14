@@ -158,11 +158,8 @@ input:checked+label::after{
     justify-content: center;
     align-items: center;
 }
-#addressTitle{
-    font-weight: bold;margin-top: 20px;
-}
-#transportTitle{
-    font-weight: bold;margin-top: 20px;
+#addressTitle, #transportTitle{
+    font-weight: bold;margin-top: 20px;padding:8px 0px 8px 0px;
 }
 #formDesc, #description, #address, #transport{
     line-height: 23px;
