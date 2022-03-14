@@ -1,4 +1,3 @@
-from ast import And
 from flask import *
 from decouple import config
 from mysql.connector import pooling
@@ -7,7 +6,7 @@ api_data_lst=Blueprint("api_data_lst", __name__, template_folder="templates")
 
 trip_pool=pooling.MySQLConnectionPool(
 	pool_name='trip_pool',
-	pool_size=10,
+	pool_size=1,
 	pool_reset_session=True,
 	host=config('host'),
 	user=config('user'),
@@ -37,7 +36,6 @@ def getDataList():
 		result=data_cursor.fetchall()
 		for i in range(len(result)):  # 把 images 的 value 從 字串 轉回 list
 			temp_images_val=json.loads(result[i]['images'])
-			result[i].pop('images', None)
 			result[i]['images']=temp_images_val
 		return result
 
@@ -93,6 +91,6 @@ def getDataList():
 	data_cursor.close()
 	cnx.close()
 	
-	final_result=jsonify(data_result) # 可能不需要
+	# final_result=jsonify(data_result) # 可能不需要
 	response=make_response(data_result, status, {"content-type":"application/json"})
 	return response

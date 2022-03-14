@@ -1,0 +1,37 @@
+/* scrollbar 設定 */
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+background: #ffffff; 
+}
+::-webkit-scrollbar-thumb {
+background: #bbb; 
+}
+::-webkit-scrollbar-thumb:hover {
+background: #999;
+}
+
+/* loader 設定 */
+/* #loading{
+    background-color: #448899;opacity: 0;height:5px;width:10%;
+    position: relative;
+    animation-name: loading;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse; 
+
+}
+@keyframes loading {
+    0%   {background-color:#448899; opacity: 1;left:0px; top:0px;}
+  10%  {background-color:yellow; left:10%; top:0px;}
+  20%  {background-color:blue; left:20%; top:0px;}
+  30%  {background-color:green; left:30%; top:0px;}
+  40% {background-color:red; left:40%; top:0px;}
+  50%  {background-color:yellow; left:50%; top:0px;}
+  60%  {background-color:blue; left:60%; top:0px;}
+  70%  {background-color:green; left:70%; top:0px;}
+  80% {background-color:red; left:80%; top:0px;}
+  90%  {background-color:green; left:90%; top:0px;}
+  100% {background-color:#448899; opacity: 1;left:90%; top:0px;}
+} */

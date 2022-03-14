@@ -1,0 +1,54 @@
+body{
+    font-size:16px;font-family:"Noto Sans TC";margin:0px;
+    height:100vh;
+    display:grid;
+    grid-template-rows: 54px 1fr;  /* 固定 header 讓剩下的可自由伸展 */
+}
+body header{
+    background-color:#ffffff;
+    border-bottom: 1px solid #e8e8e8;
+}
+#scroll{
+    overflow:auto;  /* scrollbar 開始出現的區域 */
+    /* 隱藏 x 軸向的 scrollbar  -ms- for IE8*/
+    overflow-x: hidden;  
+    -ms-overflow-x: hidden;
+}
+
+header{  /* grid 切 3 欄 保持中間 1200 px */
+    display:grid;
+    grid-template-columns: 1fr 1200px 1fr;
+}
+#header{  /* 主要顯示 grid 切 3 欄 左邊 logo 右邊會員功能 */
+    display:grid;
+    grid-template-columns: 1fr 85px 87px;
+}
+#header>.logo{
+    line-height: 34px;margin:10px 0px 10px 0px;
+    font-size: 30px;color: #448899;font-family:"Noto Sans TC";
+}
+.logo>b{cursor: pointer;}
+#itinerary{
+    font-size:16px;color:#666666;
+    width: 64px;margin:auto 10px auto 10px;
+    text-align:center;
+    cursor: pointer;
+}
+#signinup{
+    font-size:16px;color:#666666;
+    width: 72px;margin:auto 10px auto 10px;
+    text-align:center;
+    cursor: pointer;
+}
+
+.errorMsg{
+    font-weight: bolder;text-align: center;
+}
+
+footer{
+    height:104px; background-color: #757575;
+    font-family: "Noto Sans TC";
+    font-style: normal;font-weight: bold;
+    font-size: 16px;line-height: 104px;color: #ffffff;
+    text-align: center;margin-top: 55px;
+}
