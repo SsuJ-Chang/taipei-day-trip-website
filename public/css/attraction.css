@@ -164,3 +164,6 @@ input:checked+label::after{
 #transportTitle{
     font-weight: bold;margin-top: 20px;
 }
+#formDesc, #description, #address, #transport{
+    line-height: 23px;
+}
