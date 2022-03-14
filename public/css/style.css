@@ -11,8 +11,8 @@ body header{
 #scroll{
     overflow:auto;  /* scrollbar 開始出現的區域 */
     /* 隱藏 x 軸向的 scrollbar  -ms- for IE8*/
-    /* overflow-x: hidden;  
-    -ms-overflow-x: hidden; */
+    overflow-x: hidden;  
+    -ms-overflow-x: hidden;
 }
 
 header{  /* grid 切 3 欄 保持中間 1200 px */
