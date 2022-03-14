@@ -117,6 +117,10 @@
     .arrows{
         bottom:193px;
     }
+    #dotBox{
+        grid-template-rows: 18px 18px;
+        bottom: 40px;
+    }
     #bookingForm{
         width:340px;height:302px;
     }
