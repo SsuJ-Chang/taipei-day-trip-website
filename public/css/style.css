@@ -27,7 +27,7 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     line-height: 34px;margin:10px 0px 10px 0px;
     font-size: 30px;color: #448899;font-family:"Noto Sans TC";
 }
-.logo>b{cursor: pointer;}  /* 改變游標樣式 */
+.logo>b{cursor: pointer;}
 #itinerary{
     font-size:16px;color:#666666;
     width: 64px;margin:auto 10px auto 10px;
@@ -36,7 +36,7 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
 }
 #signinup{
     font-size:16px;color:#666666;
-    width: 71px;margin:auto 10px auto 10px;
+    width: 72px;margin:auto 10px auto 10px;
     text-align:center;
     cursor: pointer;
 }
