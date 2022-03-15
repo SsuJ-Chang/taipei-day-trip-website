@@ -24,19 +24,19 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     grid-template-columns: 1fr 85px 87px;
 }
 #header>.logo{
-    line-height: 34px;margin:10px 0px 10px 0px;
+    line-height: 34px;margin:10px 0px;
     font-size: 30px;color: #448899;font-family:"Noto Sans TC";
 }
 .logo>b{cursor: pointer;}
 #itinerary{
     font-size:16px;color:#666666;
-    width: 64px;margin:auto 10px auto 10px;
+    width: 64px;margin:auto 10px;
     text-align:center;
     cursor: pointer;
 }
 #signinup{
     font-size:16px;color:#666666;
-    width: 72px;margin:auto 10px auto 10px;
+    width: 72px;margin:auto 10px;
     text-align:center;
     cursor: pointer;
 }

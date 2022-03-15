@@ -15,7 +15,7 @@
     object-fit: cover;
 }
 .arrows{
-    position:relative;bottom:215px;margin:0px 10px 0px 10px;
+    position:relative;bottom:215px;margin:0px 10px;
     display:grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -40,12 +40,12 @@
 }
 .dot{
     background-color:#fff;width:11px;height:11px;border-radius: 50%;border:1px #fff solid;
-    margin:0px 6px 0px 6px;cursor:pointer;z-index:2;
+    margin:0px 6px;cursor:pointer;z-index:2;
 }
 .dot:hover{background-color: #888;width:11px;height:11px;border:1px #fff solid;}
 .active{
     background-color: #000;width:11px;height:11px;border-radius: 50%;border:1px #fff solid;
-    margin:0px 6px 0px 6px;cursor:pointer;z-index:2;
+    margin:0px 6px;cursor:pointer;z-index:2;
 }
 
 #bookingField{
@@ -116,7 +116,7 @@ label::after{
     position: absolute;  top: 11.5%; left: 11.5%;
     z-index: 1; content: '';
 }
-input:checked+label::after{
+input:checked+label::after{  /* input checked 第一個選擇器*/
     background:#448899;
 }
 
@@ -159,7 +159,7 @@ input:checked+label::after{
     align-items: center;
 }
 #addressTitle, #transportTitle{
-    font-weight: bold;margin-top: 20px;padding:8px 0px 8px 0px;
+    font-weight: bold;margin-top: 20px;padding:8px 0px;
 }
 #formDesc, #description, #address, #transport{
     line-height: 23px;
