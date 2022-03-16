@@ -61,7 +61,7 @@ function createAttractions(first, n){ // 建立「景點項目」
 
 function errorMsg(message){  // 顯示錯誤
     let messageDiv=document.createElement("div");
-    messageDiv.setAttribute("class", "errorMsg");
+    messageDiv.setAttribute("class", "error-msg");
     let errorMessage=infoText(message);
     messageDiv.appendChild(errorMessage);
     let main=document.getElementById("main");

@@ -8,6 +8,21 @@ body header{
     background-color:#ffffff;
     border-bottom: 1px solid #e8e8e8;
 }
+.header-function-bg{
+    background-color: #000000;
+    opacity: 0.25;
+    width:100%;height:100%;
+    position:absolute;top:0;right:0;bottom:0;left:0;z-index: 20;
+    
+}
+#signin{
+    box-sizing: border-box;
+    width:360px;height:275px;
+    background-color: #fff;opacity: 1;z-index: 30;
+    display: grid;
+    grid-template-columns: 360px;
+    justify-content: center;
+}
 #scroll{
     overflow:auto;  /* scrollbar 開始出現的區域 */
     /* 隱藏 x 軸向的 scrollbar  -ms- for IE8*/
@@ -17,7 +32,8 @@ body header{
 
 header{  /* grid 切 3 欄 保持中間 1200 px */
     display:grid;
-    grid-template-columns: 1fr 1200px 1fr;
+    grid-template-columns: 1200px;
+    justify-content: center;
 }
 #header{  /* 主要顯示 grid 切 3 欄 左邊 logo 右邊會員功能 */
     display:grid;
@@ -41,7 +57,7 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     cursor: pointer;
 }
 
-.errorMsg{
+.error-msg{
     font-weight: bolder;text-align: center;
 }
 
