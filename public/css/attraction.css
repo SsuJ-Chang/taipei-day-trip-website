@@ -141,6 +141,7 @@ input:checked+label::after{  /* input checked 第一個選擇器*/
     font-size: 19px;font-weight: 400; border-radius: 5px;
     margin: 25px 0px 0px 20px;cursor: pointer;
 }
+#order-btn:hover{opacity: 0.9;}
 
 #hr{
     display:grid;

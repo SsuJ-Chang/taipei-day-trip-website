@@ -68,7 +68,6 @@ function errorMsg(message){  // 顯示錯誤
     main.appendChild(messageDiv);
 }
 
-
 // function getId(event){ // 取得點擊目標 id
 //     let e=event || window.event;
 //     e=e.target;
@@ -76,7 +75,6 @@ function errorMsg(message){  // 顯示錯誤
 //     let idx=Number(e.parentNode.id.split("-")[1]) // 取得 id 尾數作為 index
 //     let id=idArr[idx]  // 從 id array 中取得景點真正 id
 //     console.log("景點 id ", id);
-
 //     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
 // }
 
@@ -87,4 +85,33 @@ function getId(attrId){ // 取得點擊目標 id
     console.log("景點 id ", id);
 
     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
+}
+// 右上角 登入/註冊
+let funcBg=document.getElementsByClassName("header-func-bg");
+let signin=document.getElementById("signin-hide");
+let signinup=document.getElementById("signinup");
+signinup.addEventListener("click", ()=>{
+    funcBg[0].style.display="block";
+    signin.style.display="block";
+})
+// signin/signup 互相切換顯示 
+let signup=document.getElementById("signup-hide");
+let signupSwitch=document.getElementById("signup-switch")
+let signinSwitch=document.getElementById("signin-switch")
+signupSwitch.addEventListener("click",()=>{
+    signup.style.display="block";
+    signin.style.display="none";
+})
+signinSwitch.addEventListener("click",()=>{
+    signin.style.display="block";
+    signup.style.display="none";
+})
+// 關閉 登入/註冊
+let funcClose=document.getElementsByClassName("func-close");
+for(let i=0;i<2;i++){
+    funcClose[i].addEventListener("click", ()=>{
+        funcBg[0].style.display="none";
+        signin.style.display="none";
+        signup.style.display="none";
+    })
 }
