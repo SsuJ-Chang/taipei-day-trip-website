@@ -1,18 +1,9 @@
 from flask import *
-from decouple import config
-from mysql.connector import pooling
+import api.connector as connector
 
 api_data_lst=Blueprint("api_data_lst", __name__, template_folder="templates")
 
-trip_pool=pooling.MySQLConnectionPool(
-	pool_name='trip_pool',
-	pool_size=1,
-	pool_reset_session=True,
-	host=config('host'),
-	user=config('user'),
-	password=config('password'),
-	database=config('database')
-)
+trip_pool=connector.connect()
 
 @api_data_lst.route("/api/attractions")
 def getDataList():
