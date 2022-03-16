@@ -38,12 +38,12 @@ function clickDot(n){
     showImg(currentImageIndex=n);
 }
 // 點擊左右箭頭切換圖片事件
-let lArrow=document.getElementById("leftArrow");
+let lArrow=document.getElementById("left-arrow");
 lArrow.addEventListener("click", ()=>{
     currentImageIndex--;
     showImg(currentImageIndex);
 })
-let rArrow=document.getElementById("rightArrow");
+let rArrow=document.getElementById("right-arrow");
 rArrow.addEventListener("click", ()=>{
     currentImageIndex++;
     showImg(currentImageIndex);
@@ -92,10 +92,10 @@ window.addEventListener("load", ()=>{  // 網頁載入的結果
         // 動態生成點點
         let dotDiv=document.getElementById("images");
         let dotBox=document.createElement("div");
-        dotBox.setAttribute("id", "dotBox");
+        dotBox.setAttribute("id", "dot-box");
         dotDiv.append(dotBox);
         for(let i=0;i<imageArr.length;i++){
-            let realDotDiv=document.getElementById("dotBox");
+            let realDotDiv=document.getElementById("dot-box");
             let dot=document.createElement("div");
             dot.setAttribute("class", "dot");
             // dot.setAttribute("style", "display:inline-block;");

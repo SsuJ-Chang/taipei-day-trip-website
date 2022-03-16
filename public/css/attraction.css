@@ -4,7 +4,7 @@
     grid-template-columns: 570px 630px;
     justify-content:center;
 }
-#imageField{
+#image-field{
     margin: 37px 15px 0px 15px;
 }
 #images{
@@ -19,17 +19,17 @@
     display:grid;
     grid-template-columns: 1fr 1fr;
 }
-#leftArrow{
+#left-arrow{
     height:0px;opacity: 0.75;
 }
-#rightArrow{
+#right-arrow{
     height:0px;opacity: 0.75;
     justify-self: right;
 }
-#leftArrow:hover, #rightArrow:hover{
+#left-arrow:hover, #right-arrow:hover{
     opacity: 1;cursor:pointer;
 }
-#dotBox{
+#dot-box{
     /* Flexbox items 自動擺放且水平置中 */
     /* display:flex;justify-content:center; */
     position: relative;bottom: 25px;
@@ -48,7 +48,7 @@
     margin:0px 6px;cursor:pointer;z-index:2;
 }
 
-#bookingField{
+#booking-field{
     margin: 40px 15px 0px 15px;
 }
 #name{
@@ -57,37 +57,37 @@
 #location{
     font-size: 16px;margin-top: 15px;margin-bottom: 20px;
 }
-#bookingForm{
+#booking-form{
     width:100%;height:302px;background-color: #e8e8e8;
     border-radius: 5px;
     font-size: 16px;
 }
-#formTitle{
+#form-title{
     margin:0px 20px 15px 20px;padding-top: 15px;
     font-weight: bold;
 }
-#formDesc{
+#form-desc{
     margin: 0px 20px 15px 20px;
 }
 #form{
     display:grid;
     grid-template-areas:"date input input"
                         "time morning evening"
-                        "feeTitle fee fee"
+                        "fee-title fee fee"
                         "order order order";
     grid-template-columns: 105px 80px 1fr;
     align-items: center;
 }
-#bookingDate{
+#booking-date{
     grid-area: date;
     margin: 0px 0px 0px 20px;
     font-weight: bold;
 }
-#dateInput{
+#date-input{
     grid-area: input;
     width:190px;height:35px;font-size: 16px;margin-right: 20px;
 }
-#bookingTime{
+#booking-time{
     grid-area: time;
     margin: 15px 0px 15px 20px;
     font-weight: bold;
@@ -120,12 +120,12 @@ input:checked+label::after{  /* input checked 第一個選擇器*/
     background:#448899;
 }
 
-.radioText{
+.radio-text{
     position: relative;bottom: 0px;
 }
 
-#feeTitle{
-    grid-area: feeTitle;
+#fee-title{
+    grid-area: fee-title;
     margin: 0px 0px 0px 20px;font-weight: bold;
 }
 .fee{
@@ -134,7 +134,7 @@ input:checked+label::after{  /* input checked 第一個選擇器*/
 #fee-1, #fee-2{
     display:none;
 }
-#orderBtn{
+#order-btn{
     grid-area: order;
     width:155px; height:36px;border: none;
     color:#fff;background-color: #448899;
@@ -158,9 +158,9 @@ input:checked+label::after{  /* input checked 第一個選擇器*/
     justify-content: center;
     align-items: center;
 }
-#addressTitle, #transportTitle{
+#address-title, #transport-title{
     font-weight: bold;margin-top: 20px;padding:8px 0px;
 }
-#formDesc, #description, #address, #transport{
+#form-desc, #description, #address, #transport{
     line-height: 23px;
 }
