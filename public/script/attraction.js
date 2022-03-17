@@ -98,11 +98,10 @@ window.addEventListener("load", ()=>{  // 網頁載入的結果
             let realDotDiv=document.getElementById("dot-box");
             let dot=document.createElement("div");
             dot.setAttribute("class", "dot");
-            // dot.setAttribute("style", "display:inline-block;");
             dot.setAttribute("onclick", `clickDot(${i})`)
             realDotDiv.append(dot);
         }
-        // currentImageIndex=Math.floor(Math.random() * imageArr.length); // 隨機決定 index
+        currentImageIndex=Math.floor(Math.random() * imageArr.length); // 隨機決定 index
         showImg(currentImageIndex); // 載入網頁後的圖片和 active 點點
         setInterval(()=>{
             clickDot(currentImageIndex+1);

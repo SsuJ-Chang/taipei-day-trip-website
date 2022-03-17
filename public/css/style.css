@@ -89,17 +89,15 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     font-size: 30px;color: #448899;font-family:"Noto Sans TC";
 }
 .logo>b{cursor: pointer;}
-#itinerary{
-    font-size:16px;color:#666666;
-    width: 64px;margin:auto 10px;
-    text-align:center;
-    cursor: pointer;
+.item{
+    font-size:16px;color:#666666;width:72px;
+    margin:auto 10px;text-align:center;cursor: pointer;
 }
-#signinup{
-    font-size:16px;color:#666666;
-    width: 72px;margin:auto 10px;
-    text-align:center;
-    cursor: pointer;
+#itinerary{
+    width: 64px;
+}
+#logout{
+    display:"none";
 }
 
 .error-msg{

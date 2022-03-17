@@ -16,6 +16,7 @@
             <div class="logo"><b id="refresh">台北一日遊</b></div>
             <div class="item" id="itinerary">預定行程</div>
             <div class="item" id="signinup">登入/註冊</div>
+            <div class="item" id="logout">登出</div>
         </div>
         <div class="header-func-bg"></div>
         <div id="signin-hide">
@@ -23,15 +24,15 @@
                 <div class="func-deco"></div>
                 <div class="func-title">登入會員帳號</div>
                 <img src="/pic/icon_close.png" class="func-close">
-                <form class="func-form" action="/api/user" method="PATCH">
+                <div class="func-form">
                     <div>
-                        <input type="email" placeholder="輸入電子信箱" class="func-input"  name="email">
+                        <input type="email" placeholder="輸入電子信箱" class="func-input" id="signin-email">
                     </div>
                     <div>
-                        <input type="password" placeholder="輸入密碼" class="func-input"  name="password">
+                        <input type="password" placeholder="輸入密碼" class="func-input" id="signin-pw">
                     </div>
-                    <button class="func-btn">登入帳戶</button>
-                </form>
+                    <button class="func-btn" id="signin-btn">登入帳戶</button>
+                </div>
                 <div class="switch" id="signup-switch"><p>還沒有帳戶？點此註冊</p></div>
             </div>
         </div>

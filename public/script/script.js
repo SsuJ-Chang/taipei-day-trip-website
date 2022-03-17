@@ -86,32 +86,99 @@ function getId(attrId){ // 取得點擊目標 id
 
     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
 }
+function closeUI(targetUI){ // 切換指定 UI 顯示為 none
+    targetUI.style.display="none";
+}
+
 // 右上角 登入/註冊
 let funcBg=document.getElementsByClassName("header-func-bg");
-let signin=document.getElementById("signin-hide");
+let signinUI=document.getElementById("signin-hide");
 let signinup=document.getElementById("signinup");
 signinup.addEventListener("click", ()=>{
     funcBg[0].style.display="block";
-    signin.style.display="block";
+    signinUI.style.display="block";
 })
 // signin/signup 互相切換顯示 
-let signup=document.getElementById("signup-hide");
+let signupUI=document.getElementById("signup-hide");
 let signupSwitch=document.getElementById("signup-switch")
 let signinSwitch=document.getElementById("signin-switch")
 signupSwitch.addEventListener("click",()=>{
-    signup.style.display="block";
-    signin.style.display="none";
+    signupUI.style.display="block";
+    closeUI(signinUI);
 })
 signinSwitch.addEventListener("click",()=>{
-    signin.style.display="block";
-    signup.style.display="none";
+    signinUI.style.display="block";
+    closeUI(signupUI);
 })
 // 關閉 登入/註冊
 let funcClose=document.getElementsByClassName("func-close");
 for(let i=0;i<2;i++){
     funcClose[i].addEventListener("click", ()=>{
-        funcBg[0].style.display="none";
-        signin.style.display="none";
-        signup.style.display="none";
+        closeUI(funcBg[0]);
+        closeUI(signinUI);
+        closeUI(signupUI);
     })
 }
+
+// 使用者登入
+let signin=document.getElementById("signin-btn");
+signin.addEventListener("click", ()=>{
+    let email=document.getElementById("signin-email").value;
+    let pw=document.getElementById("signin-pw").value;
+    fetch("/api/user", {
+        method:"PATCH",
+        body: JSON.stringify({
+            "email": `${email}`,
+            "password": `${pw}`
+          }),
+        headers: {
+        "Content-type": "application/json"
+        }
+    }).then((response)=>{
+        return response.json();
+    }).then((data)=>{
+        console.log(data);
+        if(data['ok']){
+            closeUI(funcBg[0]);
+            closeUI(signinUI);
+            // 顯示登出顯示與功能
+            let signinup=document.getElementById("signinup");
+            signinup.style.display="none";
+            let logout=document.getElementById("logout");
+            logout.style.display="block";
+        }
+    }).catch((error)=>{
+        console.log(error);
+    })
+    document.getElementById("signin-email").value="";
+    document.getElementById("signin-pw").value="";
+})
+
+// 預定行程
+let switchBooking=document.getElementById("itinerary");
+switchBooking.addEventListener("click", ()=>{
+    fetch("/api/user").then((response)=>{
+        return response.json();
+    }).then((data)=>{
+        console.log(data);
+    }).catch((error)=>{
+        console.log(error);
+    })
+})
+
+// 登出
+let logout=document.getElementById("logout");
+logout.addEventListener("click", ()=>{
+    fetch("/api/user", {
+        method:"DELETE"
+    }).then((response)=>{
+        return response.json();
+    }).then((data)=>{
+        console.log(data);
+    }).catch((error)=>{
+        console.log(error);
+    })
+    logout.style.display="none";
+    let signinup=document.getElementById("signinup");
+    signinup.style.display="block";
+})
