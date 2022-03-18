@@ -11,51 +11,12 @@
     <link href="css/decoration.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-    <header>
+    <header id="header-tag">
         <div id="header">
             <div class="logo"><b id="refresh">台北一日遊</b></div>
             <div class="item" id="itinerary">預定行程</div>
             <div class="item" id="signinup">登入/註冊</div>
-            <div class="item" id="logout">登出</div>
-        </div>
-        <div class="header-func-bg"></div>
-        <div id="signin-hide">
-            <div id="signin">
-                <div class="func-deco"></div>
-                <div class="func-title">登入會員帳號</div>
-                <img src="/pic/icon_close.png" class="func-close">
-                <div class="func-form">
-                    <div>
-                        <input type="email" placeholder="輸入電子信箱" class="func-input" id="signin-email">
-                    </div>
-                    <div>
-                        <input type="password" placeholder="輸入密碼" class="func-input" id="signin-pw">
-                    </div>
-                    <button class="func-btn" id="signin-btn">登入帳戶</button>
-                </div>
-                <div class="switch" id="signup-switch"><p>還沒有帳戶？點此註冊</p></div>
-            </div>
-        </div>
-        <div id="signup-hide">
-            <div id="signup">
-                <div class="func-deco"></div>
-                <div class="func-title">註冊會員帳號</div>
-                <img src="/pic/icon_close.png" class="func-close">
-                <form class="func-form" action="/api/user" method="POST">
-                    <div>
-                        <input type="text" placeholder="輸入姓名" class="func-input"  name="name">
-                    </div>
-                    <div>
-                        <input type="email" placeholder="輸入電子信箱" class="func-input"  name="email">
-                    </div>
-                    <div>
-                        <input type="password" placeholder="輸入密碼" class="func-input"  name="password">
-                    </div>
-                    <button class="func-btn">註冊新帳戶</button>
-                </form>
-                <div class="switch" id="signin-switch"><p>已經有帳戶了？點此登入</p></div>
-            </div>
-        </div>
+        </div> 
     </header>
 <!--  -->
     <div id="scroll">    
@@ -81,6 +42,7 @@
     </div>
 <!--  -->
     <script type="text/javascript" src="script/script.js"></script>
+    <script type="text/javascript" src="script/member.js"></script>
     <script type="text/javascript" src="script/load.js"></script>
     <script type="text/javascript" src="script/keyword.js"></script>
 </body>

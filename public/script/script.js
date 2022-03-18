@@ -16,13 +16,17 @@ function infoText(s) { // 用 createTextNode 建立文字節點
     return text;
 }
 
+function setAttributes(element, attrs){ // 複數設定屬性
+    for(var key in attrs) {
+        element.setAttribute(key, attrs[key]);
+    }
+}
+
 function createAttractions(first, n){ // 建立「景點項目」
     for (let i=first;i<n;i++){
         // 建立 第一層 景點欄位
         let attractionDiv=document.createElement("div"); // 建立 第一層 景點欄位 <div>
-        attractionDiv.setAttribute("class", "attraction");
-        attractionDiv.setAttribute("id", "attraction-"+i);
-        attractionDiv.setAttribute("onclick", "getId(this.id)"); // 給予點擊事件
+        setAttributes(attractionDiv, {"class":"attraction", "id":`attraction-${i}`,"onclick":"getId(this.id)"})
 
         let main=document.getElementById("main"); // 找到 <main>
         main.appendChild(attractionDiv); // 將每個 第一層 .attraction 裝進 <main>
@@ -31,8 +35,7 @@ function createAttractions(first, n){ // 建立「景點項目」
         let image=document.createElement("img"); // 建立 第二層 「景點圖」 <img>
         image.setAttribute("src", imgArr[i]); // 指定屬性 src 並指定「景點圖網址」
         let infoDiv=document.createElement("div"); // 建立 第二層 「景點資訊」 .info
-        infoDiv.setAttribute("class", "info");
-        infoDiv.setAttribute("id", "info-"+i);
+        setAttributes(infoDiv, {"class":"info", "id":`info-${i}`})
 
         let attraction=document.getElementById("attraction-"+i); // 找到 第一層 景點欄位
         attraction.appendChild(image); // 將 第二層 「景點圖」 <img> 裝進 第一層
@@ -86,99 +89,3 @@ function getId(attrId){ // 取得點擊目標 id
 
     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
 }
-function closeUI(targetUI){ // 切換指定 UI 顯示為 none
-    targetUI.style.display="none";
-}
-
-// 右上角 登入/註冊
-let funcBg=document.getElementsByClassName("header-func-bg");
-let signinUI=document.getElementById("signin-hide");
-let signinup=document.getElementById("signinup");
-signinup.addEventListener("click", ()=>{
-    funcBg[0].style.display="block";
-    signinUI.style.display="block";
-})
-// signin/signup 互相切換顯示 
-let signupUI=document.getElementById("signup-hide");
-let signupSwitch=document.getElementById("signup-switch")
-let signinSwitch=document.getElementById("signin-switch")
-signupSwitch.addEventListener("click",()=>{
-    signupUI.style.display="block";
-    closeUI(signinUI);
-})
-signinSwitch.addEventListener("click",()=>{
-    signinUI.style.display="block";
-    closeUI(signupUI);
-})
-// 關閉 登入/註冊
-let funcClose=document.getElementsByClassName("func-close");
-for(let i=0;i<2;i++){
-    funcClose[i].addEventListener("click", ()=>{
-        closeUI(funcBg[0]);
-        closeUI(signinUI);
-        closeUI(signupUI);
-    })
-}
-
-// 使用者登入
-let signin=document.getElementById("signin-btn");
-signin.addEventListener("click", ()=>{
-    let email=document.getElementById("signin-email").value;
-    let pw=document.getElementById("signin-pw").value;
-    fetch("/api/user", {
-        method:"PATCH",
-        body: JSON.stringify({
-            "email": `${email}`,
-            "password": `${pw}`
-          }),
-        headers: {
-        "Content-type": "application/json"
-        }
-    }).then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        console.log(data);
-        if(data['ok']){
-            closeUI(funcBg[0]);
-            closeUI(signinUI);
-            // 顯示登出顯示與功能
-            let signinup=document.getElementById("signinup");
-            signinup.style.display="none";
-            let logout=document.getElementById("logout");
-            logout.style.display="block";
-        }
-    }).catch((error)=>{
-        console.log(error);
-    })
-    document.getElementById("signin-email").value="";
-    document.getElementById("signin-pw").value="";
-})
-
-// 預定行程
-let switchBooking=document.getElementById("itinerary");
-switchBooking.addEventListener("click", ()=>{
-    fetch("/api/user").then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        console.log(data);
-    }).catch((error)=>{
-        console.log(error);
-    })
-})
-
-// 登出
-let logout=document.getElementById("logout");
-logout.addEventListener("click", ()=>{
-    fetch("/api/user", {
-        method:"DELETE"
-    }).then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        console.log(data);
-    }).catch((error)=>{
-        console.log(error);
-    })
-    logout.style.display="none";
-    let signinup=document.getElementById("signinup");
-    signinup.style.display="block";
-})

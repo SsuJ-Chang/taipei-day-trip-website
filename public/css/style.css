@@ -13,23 +13,10 @@ body header{
     opacity: 0.25;
     width:100%;height:100%;
     position:absolute;top:0;right:0;bottom:0;left:0;z-index: 20;
-    display:none;
 }
-#signin-hide{display:none;}
-#signin{
+.member-func{
     box-sizing: border-box;position: relative;
     width:340px;height:275px;border-radius: 6px;
-    background-color: #fff;opacity: 1;z-index: 30;
-    box-shadow: 0px 4px 60px #AAAAAA;
-    margin:34px auto;
-    display: grid;
-    grid-template-columns: 340px;
-    justify-content: center;
-}
-#signup-hide{display:none;}
-#signup{
-    box-sizing: border-box;position: relative;
-    width:340px;height:332px;border-radius: 6px;
     background-color: #fff;opacity: 1;z-index: 30;
     box-shadow: 0px 4px 60px #AAAAAA;
     margin:34px auto;
@@ -49,7 +36,7 @@ body header{
     position: absolute;top:27px;right:17px;cursor:pointer;
 }
 .func-form{
-    margin:0px auto;
+    margin:0px 15px;
 }
 .func-input{
     width:278px; height:15px;border-radius: 5px;outline: none;

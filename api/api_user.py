@@ -41,22 +41,17 @@ def get_member_data():
 @api_user.route("/api/user", methods=["POST"])
 def signup():
     try:
-        name=request.form['name']
-        email=request.form['email']
-        password=request.form['password']
+        signup_data=request.json
         cnx=trip_pool.get_connection()
         signup_cursor=cnx.cursor(buffered=True, dictionary=True)
-        signup_cursor.execute("SELECT email FROM member WHERE email=%s", (email, ))
+        signup_cursor.execute("SELECT email FROM member WHERE email=%s", (signup_data['email'], ))
         result=signup_cursor.fetchone()
         print("是否有重複帳號", result)
         if result == None:
-            print("斷點！")
-            signup_cursor.execute("INSERT INTO member (name, email, password) VALUES (%s, %s, %s)", (name, email, password))
-            print("斷點！")
+            signup_cursor.execute("INSERT INTO member (name, email, password) VALUES (%s, %s, %s)", (signup_data['name'], signup_data['email'], signup_data['password']))
             cnx.commit()
-            print("斷點！")
             signup_cursor.close()
-            print(f"{name} 註冊成功！")
+            print(f"{signup_data['name']} 註冊成功！")
             return {"ok": True}, 200
         else:
             print("註冊失敗，Email 重複。")
