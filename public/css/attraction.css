@@ -92,7 +92,7 @@
 #form{
     display:grid;
     grid-template-areas:"date input input"
-                        "time morning evening"
+                        "time morning afternoon"
                         "fee-title fee fee"
                         "order order order";
     grid-template-columns: 105px 80px 1fr;
@@ -117,8 +117,8 @@
     font-size: 16px;
     margin:5px 6px 0px 0px;display:none;
 }
-#evening{
-    grid-area: evening;
+#afternoon{
+    grid-area: afternoon;
     font-size: 16px;
     margin:5px 6px 0px 0px;display:none;
 }
