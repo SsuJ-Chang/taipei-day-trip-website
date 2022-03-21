@@ -93,7 +93,7 @@
     display:grid;
     grid-template-areas:"date input input"
                         "time morning afternoon"
-                        "fee-title fee fee"
+                        "price-title price price"
                         "order order order";
     grid-template-columns: 105px 80px 1fr;
     align-items: center;
@@ -105,7 +105,7 @@
 }
 #date-input{
     grid-area: input;
-    width:190px;height:35px;font-size: 16px;margin-right: 20px;
+    width:190px;height:35px;font-size: 16px;margin-right: 20px;border: none;
 }
 #booking-time{
     grid-area: time;
@@ -144,14 +144,14 @@ input:checked+label::after{  /* input checked 第一個選擇器*/
     position: relative;bottom: 0px;
 }
 
-#fee-title{
-    grid-area: fee-title;
+#price-title{
+    grid-area: price-title;
     margin: 0px 0px 0px 20px;font-weight: bold;
 }
-.fee{
-    grid-area: fee;
+.price{
+    grid-area: price;
 }
-#fee-1, #fee-2{
+#price-1, #price-2{
     display:none;
 }
 #order-btn{
