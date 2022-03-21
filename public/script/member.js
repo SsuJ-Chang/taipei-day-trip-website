@@ -1,4 +1,4 @@
-function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 signin
+function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 signin/signup
     let header=document.getElementById("header-tag");
     // 半透明黑底
     let funcBg=document.createElement("div");
@@ -25,11 +25,11 @@ function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 sign
     // 表單：輸入內容與傳送按鈕
     let funcForm=document.createElement("div");
     setAttributes(funcForm, {"class":"func-form"});
-    if(type==="signup"){
+    if(type==="signup"){  // 如果是 signup 就多加姓名 input
         let nameInput=document.createElement("input");
         setAttributes(
             nameInput, 
-            {"type":"email", "placeholder":"輸入姓名", "class":"func-input","id":`${type}-name`}
+            {"type":"text", "placeholder":"輸入姓名", "class":"func-input","id":`${type}-name`, "required":"required"}
         )
         let memberFunc=document.querySelector(".member-func");
         memberFunc.style.height="332px";
@@ -52,7 +52,10 @@ function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 sign
     funcForm.appendChild(emailInput);
     funcForm.appendChild(pwInput);
     funcForm.appendChild(btn);
-
+    
+    // 結果訊息
+    let funcMessage=document.createElement("div");
+    funcMessage.setAttribute("class", "func-message");
     // 切換功能
     let funcSwitch=document.createElement("div");
     setAttributes(funcSwitch, {"class":"switch", "id":`${type}-switch`, "onclick":"switchUI(this.id)"})
@@ -65,22 +68,39 @@ function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 sign
     memberFuncDiv.appendChild(funcTitle);
     memberFuncDiv.appendChild(funcClose);
     memberFuncDiv.appendChild(funcForm);
+    memberFuncDiv.appendChild(funcMessage);
     memberFuncDiv.appendChild(funcSwitch);
 }
 
-function closeUI(n){ // 移除最後 n 個子元素 來關閉 UI
+function closeUI(n){ // 移除最後 n 個子元素
     let header=document.getElementById("header-tag");
     for(let i=0;i<n;i++){
         header.lastChild.remove();
     }
 }
 
-function switchUI(typeId){
+function switchUI(typeId){ // 切換 登入 與 註冊 UI
     closeUI(2);
     if(typeId==="signin-switch"){
         createMemberUI("signup", "註冊會員帳號", "註冊新帳戶", "已經有帳戶了？點此登入");
     }else{
         createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊");
+    }
+}
+
+function showMessage(msg){ // 顯示 結果訊息
+    let funcMessage=document.querySelector(".func-message");
+    let errorDiv=document.createElement("div");
+    errorDiv.setAttribute("class", "message");
+    let errorMsg=infoText(msg);
+    errorDiv.appendChild(errorMsg);
+    funcMessage.appendChild(errorDiv);
+}
+
+function clearInput(selector){  // 清空 input
+    let input=document.querySelectorAll(selector);
+    for(let i=0;i<input.length;i++){
+        input[i].value="";
     }
 }
 
@@ -107,24 +127,17 @@ function signin(){ // 登入
     }).then((response)=>{
         return response.json();
     }).then((data)=>{
-        console.log(data);
         if(data['ok']){
-            closeUI(2);
-            // 顯示登出顯示與功能
-            let header=document.getElementById("header");
-            header.removeChild(header.children[2]);
-            // header.lastChild.remove(); // 不知道為何要砍兩次 這才生效
-            let logout=document.createElement("div");
-            setAttributes(logout, {"class":"item", "id":"logout", "onclick":"logout()"});
-            let logoutText=infoText("登出");
-            logout.appendChild(logoutText);
-            header.appendChild(logout);
+            window.location.reload();
+        }else{
+            document.querySelector(".member-func").style.height="315px";
+            let message=data['message'];
+            showMessage(message);
         }
     }).catch((error)=>{
         console.log(error);
     })
-    document.getElementById("signin-email").value="";
-    document.getElementById("signin-pw").value="";
+    clearInput(".func-input");
 }
 
 function signup(){ // 註冊
@@ -144,24 +157,31 @@ function signup(){ // 註冊
     }).then((response)=>{
         return response.json();
     }).then((data)=>{
-        console.log(data);
         if(data['ok']){
-            closeUI(2);
+            showMessage("註冊成功");
+        }else{
+            document.querySelector(".member-func").style.height="372px";
+            let message=data['message'];
+            showMessage(message);
         }
     }).catch((error)=>{
         console.log(error);
     })
+    clearInput(".func-input");
 }
 
 function logout(){ // 登出
     fetch("/api/user", {
-        method:"DELETE"
+        method:"DELETE",
+        credentials: 'include'
     }).then((response)=>{
         return response.json();
     }).then((data)=>{
-        let header=document.getElementById("header");
-        header.lastChild.remove();
-        window.location.reload();
+        if(data['ok']){
+            let header=document.getElementById("header");
+            header.lastChild.remove();
+            window.location.reload();
+        }
     }).catch((error)=>{
         console.log(error);
     })
@@ -170,11 +190,12 @@ function logout(){ // 登出
 // 預定行程
 let switchBooking=document.getElementById("itinerary");
 switchBooking.addEventListener("click", ()=>{
-    fetch("/api/user").then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        console.log(data);
-    }).catch((error)=>{
-        console.log(error);
-    })
+    // fetch("/api/user").then((response)=>{
+    //     return response.json();
+    // }).then((data)=>{
+    //     console.log(data);
+    // }).catch((error)=>{
+    //     console.log(error);
+    // })
+    window.location.href="/booking"
 })

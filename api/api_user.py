@@ -1,5 +1,8 @@
 from flask import *
 import api.connector as connector
+import jwt
+from datetime import datetime, timedelta
+import time
 
 api_user=Blueprint("api_user", __name__, template_folder="templates")
 
@@ -10,13 +13,19 @@ def signin():
     signin_data = request.get_json() # 接收 JSON 資料轉為 dictionary
     cnx=trip_pool.get_connection()
     user_cursor=cnx.cursor(buffered=True, dictionary=True)
-    user_cursor.execute("SELECT * FROM member WHERE email=%s AND password=%s", (signin_data['email'], signin_data['password']))
+    user_cursor.execute("SELECT member_id, name FROM member WHERE email=%s AND password=%s", (signin_data['email'], signin_data['password']))
     result=user_cursor.fetchone()
     user_cursor.close()
     try:
         if result is not None:
             print(f"{result['name']} 登入成功")
-            return {"ok": True}, 200
+
+            member_data={"id":result['member_id'], "name":result['name'], "email":signin_data['email']}
+            token=jwt.encode(member_data, "key", algorithm='HS256') # 產生 JWT
+            response=make_response({"ok": True}, 200)
+            response.set_cookie("JWT", value=token, expires=time.time()+1*60) # 把 JWT 設定至 cookie
+
+            return response
         else:
             print("登入失敗")
             return {"error": True, "message": "帳號或密碼錯誤，請重新輸入。"}, 400
@@ -27,16 +36,12 @@ def signin():
 
 @api_user.route("/api/user", methods=["GET"])
 def get_member_data():
-    cnx=trip_pool.get_connection()
-    user_data_cursor=cnx.cursor(buffered=True, dictionary=True)
-    user_data_cursor.execute("SELECT member_id, name, email FROM member")
-    result=user_data_cursor.fetchone()
-    user_data_cursor.close()
-    # 好像還缺判斷使用者是否有登入 沒登入 return null 的流程
-    # 推測可能是點擊右上角 預定行程 跳轉後要先確認是否有登入
-    print("取得會員資料", {"data":result})
-    cnx.close()
-    return {"data":result}, 200
+    JWT_cookie=request.cookies.get("JWT") # 取得前端進來的 cookie
+    if JWT_cookie is None:
+        return {"data":None}
+    else:
+        JWT_decode=jwt.decode(JWT_cookie, "key", algorithms=['HS256'])
+        return {"data":JWT_decode}, 200
 
 @api_user.route("/api/user", methods=["POST"])
 def signup():
@@ -63,4 +68,6 @@ def signup():
 
 @api_user.route("/api/user", methods=["DELETE"])
 def delete():
-    return {"ok": True}, 200
+    response=make_response({"ok": True}, 200)
+    response.set_cookie("JWT", value="", expires=0) # 把 JWT 的 cookie 刪除
+    return response

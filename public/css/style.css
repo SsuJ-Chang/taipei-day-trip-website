@@ -55,6 +55,10 @@ body header{
 .switch>p{
     cursor: pointer;margin:auto;width: 200px;height:22px;
 }
+.message{
+    font-weight: bolder;color:#448899;text-align: center;padding-top: 10px;
+}
+
 #scroll{
     overflow:auto;  /* scrollbar 開始出現的區域 */
     /* 隱藏 x 軸向的 scrollbar  -ms- for IE8*/
@@ -82,13 +86,6 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
 }
 #itinerary{
     width: 64px;
-}
-#logout{
-    display:"none";
-}
-
-.error-msg{
-    font-weight: bolder;text-align: center;
 }
 
 footer{

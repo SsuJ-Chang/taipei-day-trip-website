@@ -5,9 +5,32 @@ let imgArr=[]; // 景點圖 Array
 let nameArr=[]; // 景點名稱 Array
 let mrtArr=[]; // 捷運站 Array  
 let categoryArr=[]; // 景點分類 Array
+let test=0;
+
+// 載入網頁檢查登入狀態
+window.addEventListener("load", ()=>{
+    console.log("cookie", document.cookie)
+    fetch("/api/user",{
+        method: 'GET',
+        credentials: 'include'
+      }).then((response)=>{
+          return response.json()
+      }).then((data)=>{
+          if(data['data']!==null){
+            let header=document.getElementById("header");
+            header.removeChild(header.children[2]);
+            let logout=document.createElement("div");
+            setAttributes(logout, {"class":"item", "id":"logout", "onclick":"logout()"});
+            let logoutText=infoText("登出系統");
+            logout.appendChild(logoutText);
+            header.appendChild(logout);
+          }
+      })
+})
 
 let refresh=document.getElementById("refresh")
-refresh.addEventListener("click", ()=>{
+refresh.addEventListener("click", (e)=>{
+    e.preventDefault();
     window.location.href=".."
 })
 
@@ -62,7 +85,7 @@ function createAttractions(first, n){ // 建立「景點項目」
     }
 }
 
-function errorMsg(message){  // 顯示錯誤
+function errorMsg(message){  // 顯示搜尋錯誤
     let messageDiv=document.createElement("div");
     messageDiv.setAttribute("class", "error-msg");
     let errorMessage=infoText(message);
