@@ -105,7 +105,7 @@
 }
 #date-input{
     grid-area: input;
-    width:190px;height:35px;font-size: 16px;margin-right: 20px;border: none;
+    width:190px;height:35px;font-size: 16px;margin-right: 20px;border: none;outline: none;
 }
 #booking-time{
     grid-area: time;
