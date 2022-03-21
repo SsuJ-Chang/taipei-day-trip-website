@@ -29,7 +29,7 @@ function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 sign
         let nameInput=document.createElement("input");
         setAttributes(
             nameInput, 
-            {"type":"text", "placeholder":"輸入姓名", "class":"func-input","id":`${type}-name`, "required":"required"}
+            {"type":"text", "placeholder":"輸入姓名", "class":"func-input", "id":`${type}-name`}
         )
         let memberFunc=document.querySelector(".member-func");
         memberFunc.style.height="332px";
@@ -55,7 +55,8 @@ function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 sign
     
     // 結果訊息
     let funcMessage=document.createElement("div");
-    funcMessage.setAttribute("class", "func-message");
+    funcMessage.setAttribute("id", "func-message");
+
     // 切換功能
     let funcSwitch=document.createElement("div");
     setAttributes(funcSwitch, {"class":"switch", "id":`${type}-switch`, "onclick":"switchUI(this.id)"})
@@ -89,7 +90,10 @@ function switchUI(typeId){ // 切換 登入 與 註冊 UI
 }
 
 function showMessage(msg){ // 顯示 結果訊息
-    let funcMessage=document.querySelector(".func-message");
+    let funcMessage=document.getElementById("func-message");
+    if(funcMessage.lastChild){
+        funcMessage.lastChild.remove();
+    }
     let errorDiv=document.createElement("div");
     errorDiv.setAttribute("class", "message");
     let errorMsg=infoText(msg);
@@ -144,30 +148,51 @@ function signup(){ // 註冊
     let name=document.getElementById("signup-name").value;
     let email=document.getElementById("signup-email").value;
     let pw=document.getElementById("signup-pw").value;
-    fetch("/api/user", {
-        method:"POST",
-        body: JSON.stringify({
-            "name": `${name}`,
-            "email": `${email}`,
-            "password": `${pw}`
-          }),
-        headers: {
-            "Content-type": "application/json"
-        }
-    }).then((response)=>{
-        return response.json();
-    }).then((data)=>{
-        if(data['ok']){
-            showMessage("註冊成功");
-        }else{
+    let valid=0;
+    if(/^[\u4E00-\u9FA50-9A-Za-z_]{2,20}$/i.test(name)){
+        valid++;
+    }else{
+        document.querySelector(".member-func").style.height="372px";
+        showMessage("請依格式輸入姓名");
+    }
+    if(/^[\w.-]+@[\w.-]+\.[A-Za-z]{2,6}$/i.test(email)){
+        valid++;
+    }else{
+        document.querySelector(".member-func").style.height="372px";
+        showMessage("請依格式輸入 Email");
+    }
+    if(/[0-9a-zA-Z]{4,20}$/i.test(pw)){
+        valid++;
+    }else{
+        document.querySelector(".member-func").style.height="372px";
+        showMessage("請依格式輸入密碼");
+    }
+    if(valid===3){
+        fetch("/api/user", {
+            method:"POST",
+            body: JSON.stringify({
+                "name": `${name}`,
+                "email": `${email}`,
+                "password": `${pw}`
+              }),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then((response)=>{
+            return response.json();
+        }).then((data)=>{
             document.querySelector(".member-func").style.height="372px";
-            let message=data['message'];
-            showMessage(message);
-        }
-    }).catch((error)=>{
-        console.log(error);
-    })
-    clearInput(".func-input");
+            if(data['ok']){
+                showMessage("註冊成功");
+            }else{
+                let message=data['message'];
+                showMessage(message);
+            }
+        }).catch((error)=>{
+            console.log(error);
+        })
+        clearInput(".func-input");
+    }
 }
 
 function logout(){ // 登出
