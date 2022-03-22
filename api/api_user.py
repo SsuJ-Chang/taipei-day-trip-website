@@ -1,12 +1,15 @@
 from flask import *
 import api.connector as connector
 import jwt
+from decouple import config
 from datetime import datetime, timedelta
 import time
 
 api_user=Blueprint("api_user", __name__, template_folder="templates")
 
 trip_pool=connector.connect()
+
+key=config('JWT')
 
 @api_user.route("/api/user", methods=["PATCH"])
 def signin():
@@ -21,7 +24,7 @@ def signin():
             print(f"{result['name']} 登入成功")
 
             member_data={"id":result['member_id'], "name":result['name'], "email":signin_data['email']}
-            token=jwt.encode(member_data, "key", algorithm='HS256') # 產生 JWT
+            token=jwt.encode(member_data, key, algorithm='HS256') # 產生 JWT
             response=make_response({"ok": True}, 200)
             response.set_cookie("JWT", value=token, expires=time.time()+3*60) # 把 JWT 設定至 cookie
 
@@ -40,7 +43,7 @@ def get_member_data():
     if JWT_cookie is None:
         return {"data":None}
     else:
-        JWT_decode=jwt.decode(JWT_cookie, "key", algorithms=['HS256'])
+        JWT_decode=jwt.decode(JWT_cookie, key, algorithms=['HS256'])
         return {"data":JWT_decode}, 200
 
 @api_user.route("/api/user", methods=["POST"])

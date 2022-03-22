@@ -8,7 +8,8 @@ let categoryArr=[]; // 景點分類 Array
 let test=0;
 
 // 載入網頁檢查登入狀態
-window.addEventListener("load", ()=>{
+window.addEventListener("DOMContentLoaded", ()=>{
+    document.getElementById("signinup").style.display="none";
     console.log("cookie", document.cookie)
     fetch("/api/user",{
         method: 'GET',
@@ -24,6 +25,8 @@ window.addEventListener("load", ()=>{
             let logoutText=infoText("登出系統");
             logout.appendChild(logoutText);
             header.appendChild(logout);
+          }else{
+            document.getElementById("signinup").style.display="block";
           }
       })
 })
