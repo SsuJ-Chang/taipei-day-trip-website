@@ -23,10 +23,10 @@ def signin():
         if result is not None:
             print(f"{result['name']} 登入成功")
 
-            member_data={"id":result['member_id'], "name":result['name'], "email":signin_data['email']}
-            token=jwt.encode(member_data, key, algorithm='HS256') # 產生 JWT
+            JWT_data={"id":result['member_id'], "name":result['name'], "email":signin_data['email'], "exp": datetime.utcnow() + timedelta(minutes=3)}
+            token=jwt.encode(JWT_data, key, algorithm='HS256') # 產生 JWT
             response=make_response({"ok": True}, 200)
-            response.set_cookie("JWT", value=token, expires=time.time()+3*60) # 把 JWT 設定至 cookie
+            response.set_cookie("JWT", value=token) # 把 JWT 設定至 cookie
 
             return response
         else:
