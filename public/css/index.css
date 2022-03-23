@@ -8,20 +8,20 @@ nav{
     display:grid;
     grid-template-columns: 690px 1fr;
 }
-#navTitle{
+#nav-title{
     font-family:"Noto Sans TC";
     font-style: normal;font-weight: bold;
     font-size: 28px;line-height: 41px;color: #F8F8F8;
     text-shadow: 0px 0px 30px #AABBCC;
     height:41px;margin-top: 85px;margin-bottom: 15px;
 }
-#navDesc{
+#nav-desc{
     font-family: "Noto Sans TC";
     font-style: normal;font-weight: normal;
     font-size: 16px;line-height: 22px;color: #F8F8F8;
     height:22px;
 }
-#keywordInput{
+#keyword-input{
     width:400px;height:26px;
     font-family: "Noto Sans TC";
     font-style: normal;font-weight: bold;
@@ -36,7 +36,8 @@ nav{
     position: relative;top:8px;left: -5px;
     cursor:pointer;
 }
-#iconSearch{
+#search:hover{opacity: 0.9;}
+#icon-search{
     position: relative;top: 5%;
 }
 #welcome{ /* 自由廣場 */
@@ -54,7 +55,7 @@ main{
 main>.attraction{
     height:242px;margin:10px;
     border: 1px solid #dddddd;border-radius: 5px;
-    cursor:pointer;z-index: 999;
+    cursor:pointer;z-index: 10;
 }
 .attraction:hover{
     opacity: 0.9;

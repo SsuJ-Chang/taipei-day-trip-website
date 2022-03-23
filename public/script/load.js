@@ -8,10 +8,8 @@ let options={  // 觸發條件
 };
 let callback=(e)=>{ // 觸發條件後要處理的回呼函式
     if(e[0].isIntersecting){  // 
-        console.log("Fetching前狀態", fetching);
         if(page!==null && fetching===false){  // 判斷 page 是否為 null 且 沒有發出請求狀態為 false
             fetching=true;  // 可以發出請求就把請求狀態改為 true
-            console.log("Fetching後狀態", fetching);
             fetch(src).then(response=>{
                 return response.json();
             }).then((data)=>{
@@ -28,11 +26,9 @@ let callback=(e)=>{ // 觸發條件後要處理的回呼函式
                 console.log("下一頁" ,page);
                 src="api/attractions?page="+page;
                 fetching=false;  // 當此次 fetch 的結果都處理完成 就把請求狀態改為 false
-                console.log("完成 response 處理 切換請求狀態", fetching);
             }).catch((error)=>{
                 console.log("連線失敗", error);
                 fetching=false;  // 當此次 fetch 的結果都處理完成 就把請求狀態改為 false
-                console.log("完成 response 處理 切換請求狀態", fetching);
             })
         }else{
             observer.unobserve(footer);  // 取消觀察目標

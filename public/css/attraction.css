@@ -4,7 +4,7 @@
     grid-template-columns: 570px 630px;
     justify-content:center;
 }
-#imageField{
+#image-field{
     margin: 37px 15px 0px 15px;
 }
 #images{
@@ -13,23 +13,43 @@
 #images>img{
     width:100%;height:100%;border-radius: 5px;
     object-fit: cover;
+    -webkit-animation-name: fade;
+    -moz-animation-name: fade;
+    -webkit-animation-duration: 1.2s;
+    -moz-animation-duration: 1.2s;
+    animation-name: fade;
+    animation-duration: 1.2s;
+}
+@keyframes fade{
+    from {opacity: .3}
+    to {opacity: 1}
+}
+@-webkit-keyframes fade{
+    from {opacity: .3}
+    to {opacity: 1}
+  }
+@-moz-keyframes fade{
+    from {opacity: .3}
+    to {opacity: 1}
 }
 .arrows{
-    position:relative;bottom:215px;margin:0px 10px 0px 10px;
+    position:relative;bottom:215px;margin:0px 10px;
     display:grid;
     grid-template-columns: 1fr 1fr;
 }
-#leftArrow{
+#left-arrow{
     height:0px;opacity: 0.75;
+    transition: 0.5s ease;
 }
-#rightArrow{
+#right-arrow{
     height:0px;opacity: 0.75;
     justify-self: right;
+    transition: 0.5s ease;
 }
-#leftArrow:hover, #rightArrow:hover{
+#left-arrow:hover, #right-arrow:hover{
     opacity: 1;cursor:pointer;
 }
-#dotBox{
+#dot-box{
     /* Flexbox items 自動擺放且水平置中 */
     /* display:flex;justify-content:center; */
     position: relative;bottom: 25px;
@@ -40,15 +60,15 @@
 }
 .dot{
     background-color:#fff;width:11px;height:11px;border-radius: 50%;border:1px #fff solid;
-    margin:0px 6px 0px 6px;cursor:pointer;z-index:2;
+    margin:0px 6px;cursor:pointer;z-index:2;
 }
 .dot:hover{background-color: #888;width:11px;height:11px;border:1px #fff solid;}
 .active{
     background-color: #000;width:11px;height:11px;border-radius: 50%;border:1px #fff solid;
-    margin:0px 6px 0px 6px;cursor:pointer;z-index:2;
+    margin:0px 6px;cursor:pointer;z-index:2;
 }
 
-#bookingField{
+#booking-field{
     margin: 40px 15px 0px 15px;
 }
 #name{
@@ -57,37 +77,37 @@
 #location{
     font-size: 16px;margin-top: 15px;margin-bottom: 20px;
 }
-#bookingForm{
+#booking-form{
     width:100%;height:302px;background-color: #e8e8e8;
     border-radius: 5px;
     font-size: 16px;
 }
-#formTitle{
+#form-title{
     margin:0px 20px 15px 20px;padding-top: 15px;
     font-weight: bold;
 }
-#formDesc{
+#form-desc{
     margin: 0px 20px 15px 20px;
 }
 #form{
     display:grid;
     grid-template-areas:"date input input"
-                        "time morning evening"
-                        "feeTitle fee fee"
+                        "time morning afternoon"
+                        "price-title price price"
                         "order order order";
     grid-template-columns: 105px 80px 1fr;
     align-items: center;
 }
-#bookingDate{
+#booking-date{
     grid-area: date;
     margin: 0px 0px 0px 20px;
     font-weight: bold;
 }
-#dateInput{
+#date-input{
     grid-area: input;
-    width:190px;height:35px;font-size: 16px;margin-right: 20px;
+    width:190px;height:35px;font-size: 16px;margin-right: 20px;border: none;outline: none;
 }
-#bookingTime{
+#booking-time{
     grid-area: time;
     margin: 15px 0px 15px 20px;
     font-weight: bold;
@@ -97,8 +117,8 @@
     font-size: 16px;
     margin:5px 6px 0px 0px;display:none;
 }
-#evening{
-    grid-area: evening;
+#afternoon{
+    grid-area: afternoon;
     font-size: 16px;
     margin:5px 6px 0px 0px;display:none;
 }
@@ -116,31 +136,32 @@ label::after{
     position: absolute;  top: 11.5%; left: 11.5%;
     z-index: 1; content: '';
 }
-input:checked+label::after{
+input:checked+label::after{  /* input checked 第一個選擇器*/
     background:#448899;
 }
 
-.radioText{
+.radio-text{
     position: relative;bottom: 0px;
 }
 
-#feeTitle{
-    grid-area: feeTitle;
+#price-title{
+    grid-area: price-title;
     margin: 0px 0px 0px 20px;font-weight: bold;
 }
-.fee{
-    grid-area: fee;
+.price{
+    grid-area: price;
 }
-#fee-1, #fee-2{
+#price-1, #price-2{
     display:none;
 }
-#orderBtn{
+#order-btn{
     grid-area: order;
     width:155px; height:36px;border: none;
     color:#fff;background-color: #448899;
     font-size: 19px;font-weight: 400; border-radius: 5px;
     margin: 25px 0px 0px 20px;cursor: pointer;
 }
+#order-btn:hover{opacity: 0.9;}
 
 #hr{
     display:grid;
@@ -158,9 +179,9 @@ input:checked+label::after{
     justify-content: center;
     align-items: center;
 }
-#addressTitle, #transportTitle{
-    font-weight: bold;margin-top: 20px;padding:8px 0px 8px 0px;
+#address-title, #transport-title{
+    font-weight: bold;margin-top: 20px;padding:8px 0px;
 }
-#formDesc, #description, #address, #transport{
+#form-desc, #description, #address, #transport{
     line-height: 23px;
 }

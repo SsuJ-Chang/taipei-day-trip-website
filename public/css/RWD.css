@@ -25,16 +25,10 @@
     #detail{
         display:grid;
         grid-template-columns: 1fr;
-        margin: 0px 10px 0px 10px;
+        margin: 0px 10px;
     }
 }
 @media (max-width:600px){
-	header{
-        grid-template-columns: 1fr;
-    }
-    .logo{
-        padding-left: 10px;
-    }
     /* index */
     #nav-1{
         grid-template-columns: 350px 1fr;
@@ -42,7 +36,7 @@
     #nav-2{
         padding-left: 10px;
     }
-    #keywordInput{
+    #keyword-input{
         width:250px;
     }
     main{
@@ -53,10 +47,10 @@
         grid-template-columns: 95%;
     }
     .arrows{
-        margin:0px 10px 0px 10px;
+        margin:0px 10px;
         bottom:221px;
     }
-    #bookingField{
+    #booking-field{
         margin: 20px 10px 0px 10px;
     }
 }
@@ -67,7 +61,7 @@
     #nav-2{
         padding-left: 20px;z-index:2;
     }
-    #keywordInput{
+    #keyword-input{
         width:230px;
     }
     #welcome{ /* 自由廣場 */
@@ -82,7 +76,7 @@
     nav{
         height:280px
     }
-    #navTitle{
+    #nav-title{
         margin-top: 65px;margin-bottom: 15px;
     }
     #nav-1{
@@ -91,7 +85,7 @@
     #nav-2{
         padding-left: 20px;z-index:2;
     }
-    #keywordInput{
+    #keyword-input{
         width:230px;z-index:2;
         margin-top: 25px;margin-bottom: 66px;
     }
@@ -108,7 +102,7 @@
     #summary{
         grid-template-columns: 100%;
     }
-    #imageField{
+    #image-field{
         margin: 37px 0px 0px 0px;
     }
     #images{
@@ -121,7 +115,7 @@
         grid-template-rows: 18px 18px;
         bottom: 40px;
     }
-    #bookingForm{
+    #booking-form{
         width:340px;height:302px;
     }
 }

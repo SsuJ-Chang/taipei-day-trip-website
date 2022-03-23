@@ -2,7 +2,7 @@
 let search=document.getElementById("search");
 search.addEventListener("click", ()=>{
     console.log("KEYWORD QUERY")
-    let input=document.getElementById("keywordInput");
+    let input=document.getElementById("keyword-input");
     let keywordInput=input.value;  // 接收 input
     src="api/attractions?keyword="+keywordInput;
     input.value="";  // 清空 input
@@ -51,7 +51,7 @@ search.addEventListener("click", ()=>{
     }
 })
 // 查詢景點 input 鍵盤 Enter 和 查詢按鈕連結
-let enter=document.getElementById("keywordInput");
+let enter=document.getElementById("keyword-input");
 enter.addEventListener("keyup", (e)=>{
     if(e.key==="Enter"){
         e.preventDefault();  // 防止執行預設動作 不加暫時不會產生問題
