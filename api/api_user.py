@@ -26,7 +26,7 @@ def signin():
             JWT_data={"id":result['member_id'], "name":result['name'], "email":signin_data['email'], "exp": datetime.utcnow() + timedelta(minutes=3)}
             token=jwt.encode(JWT_data, key, algorithm='HS256') # 產生 JWT
             response=make_response({"ok": True}, 200)
-            response.set_cookie("JWT", value=token) # 把 JWT 設定至 cookie
+            response.set_cookie("JWT", value=token, expires=time.time()+3*60) # 把 JWT 設定至 cookie
 
             return response
         else:
@@ -41,10 +41,16 @@ def signin():
 def get_member_data():
     JWT_cookie=request.cookies.get("JWT") # 取得前端進來的 cookie
     if JWT_cookie is None:
+        print("無token", JWT_cookie)
         return {"data":None}
     else:
-        JWT_decode=jwt.decode(JWT_cookie, key, algorithms=['HS256'])
-        return {"data":JWT_decode}, 200
+        print("有token", JWT_cookie)
+        try:
+            JWT_decode=jwt.decode(JWT_cookie, key, algorithms=['HS256'])
+            JWT_decode.pop('exp')
+            return {"data":JWT_decode}, 200
+        except jwt.ExpiredSignatureError:
+            return {"data":None}
 
 @api_user.route("/api/user", methods=["POST"])
 def signup():
