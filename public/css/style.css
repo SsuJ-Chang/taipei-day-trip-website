@@ -23,6 +23,24 @@ body header{
     display: grid;
     grid-template-columns: 340px;
     justify-content: center;
+    -webkit-animation-name: scale;
+    -moz-animation-name: scale;
+    -webkit-animation-duration: 0.4s;
+    -moz-animation-duration: 0.4s;
+    animation-name: scale;
+    animation-duration: 0.4s
+}
+@keyframes scale{
+    from {opacity: .3; transform:scale(0)}
+    to {opacity: 1; transform:scale(1)}
+}
+@-webkit-keyframes scale{
+    from {opacity: .3;transform:scale(0)}
+    to {opacity: 1; transform:scale(1)}
+  }
+@-moz-keyframes scale{
+    from {opacity: .3; transform:scale(0)}
+    to {opacity: 1; transform:scale(1)}
 }
 .func-deco{
     background: linear-gradient(270deg, #337788 0%, #66AABB 100%);

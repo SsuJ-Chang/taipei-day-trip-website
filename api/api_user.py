@@ -41,10 +41,8 @@ def signin():
 def get_member_data():
     JWT_cookie=request.cookies.get("JWT") # 取得前端進來的 cookie
     if JWT_cookie is None:
-        print("無token", JWT_cookie)
         return {"data":None}
     else:
-        print("有token", JWT_cookie)
         try:
             JWT_decode=jwt.decode(JWT_cookie, key, algorithms=['HS256'])
             JWT_decode.pop('exp')

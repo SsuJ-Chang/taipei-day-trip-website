@@ -110,7 +110,6 @@ function clearInput(selector){  // 清空 input
 
 // 右上角 登入/註冊
 let funcBg=document.getElementsByClassName("header-func-bg");
-let signinUI=document.getElementById("signin-hide");
 let signinup=document.getElementById("signinup");
 signinup.addEventListener("click", ()=>{
     createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊")
