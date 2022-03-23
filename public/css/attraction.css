@@ -163,15 +163,6 @@ input:checked+label::after{  /* input checked 第一個選擇器*/
 }
 #order-btn:hover{opacity: 0.9;}
 
-#hr{
-    display:grid;
-    grid-template-columns: 1200px;
-    justify-content: center;
-}
-#hr>#line{
-    height:1px;background-color: #e8e8e8;margin: 37px 0px 50px 0px;
-}
-
 #detail{
     font-size: 16px;color: #666;
     display:grid;
