@@ -37,7 +37,7 @@
     height:10px;border-radius: 6px 6px 0px 0px;
 }
 .func-title{
-    font-size: 24px;font-weight:900;text-align: center;color: #666;
+    font-size: 24px;font-weight:900;text-align: center;
     height:57px;line-height: 57px;
 }
 .func-close{
@@ -58,7 +58,7 @@
 }
 .func-btn:hover{opacity:0.9;}
 .switch{
-    color:#666;text-align: center;height:47px;line-height: 47px;
+    text-align: center;height:47px;line-height: 47px;
 }
 .switch>p{
     cursor: pointer;margin:auto;width: 200px;height:22px;

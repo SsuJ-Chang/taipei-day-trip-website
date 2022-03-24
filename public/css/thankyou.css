@@ -1,0 +1,12 @@
+.thankyou-container{
+    display:grid;
+    grid-template-columns: 1000px;
+    justify-content:center;
+    margin: 0 10px;
+}
+.thankyou-greeting{
+    font-weight: 700;font-size: 19px;margin:46px 0 35px 0;
+}
+footer{
+    height:860px;
+}

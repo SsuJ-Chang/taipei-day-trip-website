@@ -5,7 +5,6 @@ let imgArr=[]; // 景點圖 Array
 let nameArr=[]; // 景點名稱 Array
 let mrtArr=[]; // 捷運站 Array  
 let categoryArr=[]; // 景點分類 Array
-let test=0;
 
 // 載入網頁檢查登入狀態
 window.addEventListener("DOMContentLoaded", ()=>{
@@ -25,6 +24,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
             let logoutText=infoText("登出系統");
             logout.appendChild(logoutText);
             header.appendChild(logout);
+            document.getElementById("member-name").innerHTML=data['data']['name'];;
           }else{
             document.getElementById("signinup").style.display="block";
           }

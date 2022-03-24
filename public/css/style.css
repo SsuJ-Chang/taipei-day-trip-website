@@ -1,5 +1,5 @@
 body{
-    font-size:16px;font-family:"Noto Sans TC";margin:0px;
+    font-size:16px;font-family:"Noto Sans TC";margin:0px;color: #666;
     height:100vh;
     display:grid;
     grid-template-rows: 54px 1fr;  /* 固定 header 讓剩下的可自由伸展 */
@@ -31,8 +31,7 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
 }
 .logo>b{cursor: pointer;}
 .item{
-    font-size:16px;color:#666666;width:72px;
-    margin:auto 10px;text-align:center;cursor: pointer;
+    width:72px; margin:auto 10px;text-align:center;cursor: pointer;
 }
 #itinerary{
     width: 64px;
@@ -44,12 +43,12 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     justify-content: center;
 }
 #hr>#line{
-    height:1px;background-color: #e8e8e8;margin: 37px 0px 50px 0px;
+    height:1px;background-color: #e8e8e8;margin: 40px 0px 45px 0px;
 }
 footer{
     height:104px; background-color: #757575;
     font-family: "Noto Sans TC";
     font-style: normal;font-weight: bold;
-    font-size: 16px;line-height: 104px;color: #ffffff;
+    line-height: 104px;color: #ffffff;
     text-align: center;margin-top: 55px;
 }
