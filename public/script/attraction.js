@@ -128,11 +128,19 @@ timePicker[0].addEventListener("click", ()=>{
     morningFee.style.display="block";
     eveningFee.style.display="none";
     time=timePicker[0].value;
+    price=2000;
+    // localStorage.price=price;
+    // localStorage.removeItem("price");
+    sessionStorage.setItem("price", price);
 })
 timePicker[1].addEventListener("click", ()=>{
     eveningFee.style.display="block";
     morningFee.style.display="none";
     time=timePicker[1].value;
+    price=2500;
+    // localStorage.price=price;
+    // localStorage.removeItem("price");
+    sessionStorage.setItem("price", price);
 })
 // 開始預定行程
 let booking=document.getElementById("order-btn");
