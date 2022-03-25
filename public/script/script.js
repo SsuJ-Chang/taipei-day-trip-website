@@ -115,3 +115,9 @@ function getId(attrId){ // 取得點擊目標 id
 
     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
 }
+
+// 預定行程
+let redirectBooking=document.getElementById("itinerary");
+redirectBooking.addEventListener("click", ()=>{
+    window.location.href="/booking"
+})

@@ -210,16 +210,3 @@ function logout(){ // 登出
         console.log(error);
     })
 }
-
-// 預定行程
-let switchBooking=document.getElementById("itinerary");
-switchBooking.addEventListener("click", ()=>{
-    // fetch("/api/user").then((response)=>{
-    //     return response.json();
-    // }).then((data)=>{
-    //     console.log(data);
-    // }).catch((error)=>{
-    //     console.log(error);
-    // })
-    window.location.href="/booking"
-})

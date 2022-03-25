@@ -23,7 +23,7 @@
 .booking-date, .booking-time, .booking-price, .booking-address{
     margin:0 0 20px 22px;line-height: 16px;
 }
-#icon-delete:hover{opacity: 0.9;}
+#booking-delete:hover{opacity: 0.9;}
 .member-booking-info-title{
     font-size: 19px;font-weight: 700;margin-bottom: 24px;
 }

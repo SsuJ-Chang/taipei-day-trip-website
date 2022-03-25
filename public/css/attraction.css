@@ -150,14 +150,14 @@ input:checked+label::after{  /* input checked 第一個選擇器*/
 #price-1, #price-2{
     display:none;
 }
-#order-btn{
+#booking-btn{
     grid-area: order;
     width:155px; height:36px;border: none;
     color:#fff;background-color: #448899;
     font-size: 19px;font-weight: 400; border-radius: 5px;
     margin: 25px 0px 0px 20px;cursor: pointer;
 }
-#order-btn:hover{opacity: 0.9;}
+#booking-btn:hover{opacity: 0.9;}
 
 #detail{
     display:grid;
