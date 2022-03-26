@@ -4,6 +4,7 @@ import jwt
 from decouple import config
 from datetime import datetime, timedelta
 import time
+from flask_bcrypt import Bcrypt
 
 api_user=Blueprint("api_user", __name__, template_folder="templates")
 
@@ -16,11 +17,16 @@ def signin():
     signin_data = request.get_json() # 接收 JSON 資料轉為 dictionary
     cnx=trip_pool.get_connection()
     user_cursor=cnx.cursor(buffered=True, dictionary=True)
-    user_cursor.execute("SELECT member_id, name FROM member WHERE email=%s AND password=%s", (signin_data['email'], signin_data['password']))
+    # user_cursor.execute("SELECT member_id, name FROM member WHERE email=%s AND password=%s", (signin_data['email'], signin_data['password']))
+    user_cursor.execute("SELECT * FROM member WHERE email=%s", (signin_data['email'], ))
     result=user_cursor.fetchone()
     user_cursor.close()
+
+    bcrypt = Bcrypt() # 實例化 bcrypt
+
     try:
-        if result is not None:
+        # if result is not None:
+        if result is not None and bcrypt.check_password_hash(result['password'], signin_data['password']):
             print(f"{result['name']} 登入成功")
 
             JWT_data={"id":result['member_id'], "name":result['name'], "email":signin_data['email'], "exp": datetime.utcnow() + timedelta(minutes=3)}
@@ -60,7 +66,12 @@ def signup():
         result=signup_cursor.fetchone()
         print("是否有重複帳號", result)
         if result == None:
-            signup_cursor.execute("INSERT INTO member (name, email, password) VALUES (%s, %s, %s)", (signup_data['name'], signup_data['email'], signup_data['password']))
+
+            bcrypt = Bcrypt() # 實例化 bcrypt
+            hashed=bcrypt.generate_password_hash(password=signup_data['password'])
+            print(hashed)
+
+            signup_cursor.execute("INSERT INTO member (name, email, password) VALUES (%s, %s, %s)", (signup_data['name'], signup_data['email'], hashed))
             cnx.commit()
             signup_cursor.close()
             print(f"{signup_data['name']} 註冊成功！")
