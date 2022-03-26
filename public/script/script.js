@@ -9,7 +9,6 @@ let categoryArr=[]; // 景點分類 Array
 // 載入網頁檢查登入狀態
 window.addEventListener("DOMContentLoaded", ()=>{
     document.getElementById("signinup").style.display="none";
-    console.log("cookie", document.cookie)
     fetch("/api/user",{
         method: 'GET',
         credentials: 'include'
@@ -24,7 +23,9 @@ window.addEventListener("DOMContentLoaded", ()=>{
             let logoutText=infoText("登出系統");
             logout.appendChild(logoutText);
             header.appendChild(logout);
-            document.getElementById("member-name").innerHTML=data['data']['name'];;
+            if(document.getElementById("member-name")){
+                document.getElementById("member-name").innerHTML=data['data']['name'];
+            }
           }else{
             document.getElementById("signinup").style.display="block";
           }
