@@ -37,12 +37,12 @@ header{  /* grid 切 3 欄 保持中間 1200 px */
     width: 64px;
 }
 
-#hr{
+.hr{
     display:grid;
     grid-template-columns: 1200px;
     justify-content: center;
 }
-#hr>#line{
+.hr>.line{
     height:1px;background-color: #e8e8e8;margin: 40px 0px 45px 0px;
 }
 footer{
