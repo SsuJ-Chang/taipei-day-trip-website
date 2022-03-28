@@ -120,5 +120,16 @@ function getId(attrId){ // 取得點擊目標 id
 // 預定行程
 let redirectBooking=document.getElementById("itinerary");
 redirectBooking.addEventListener("click", ()=>{
-    window.location.href="/booking"
+    fetch("/api/user",{
+        method: 'GET',
+        credentials: 'include'
+      }).then((response)=>{
+          return response.json()
+      }).then((data)=>{
+          if(data['data']!==null){
+            window.location.href="/booking"
+          }else{
+            createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊")
+          }
+      })
 })

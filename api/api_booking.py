@@ -22,12 +22,16 @@ def booking():
             # 確認是否已有訂單
             booking_cursor.execute("SELECT * FROM booking WHERE member_id=%s", (JWT_decode['id'], ))
             check_booking=booking_cursor.fetchone()
-            if check_booking is not None:
-                response=make_response({"error": True, "message": "訂單建立失敗，已有尚未付款訂單"}, 400)
-            else:
-                # 新增訂單
-                booking_data=request.json
+            booking_data=request.json
+            print("訂單資料", booking_data)
+            if booking_data['date'] == "undefined" or booking_data['time'] == "undefined": # 資料輸入不完整
+                response=make_response({"error": True, "message": "訂單建立失敗，請選擇訂單內容。"}, 400)
+            elif check_booking is None: # 新增訂單
                 booking_cursor.execute("INSERT INTO booking (member_id, attraction_id, date, time, price) VALUES (%s, %s, %s, %s, %s)", (JWT_decode['id'], booking_data['attractionId'], booking_data['date'], booking_data['time'], booking_data['price']))
+                cnx.commit()
+                response=make_response({"ok": True}, 200)
+            else: # 已有訂單更新資料
+                booking_cursor.execute("UPDATE booking SET attraction_id=%s, date=%s, time=%s, price=%s WHERE member_id=%s", (booking_data['attractionId'], booking_data['date'], booking_data['time'], booking_data['price'], JWT_decode['id']))
                 cnx.commit()
                 response=make_response({"ok": True}, 200)
         except:

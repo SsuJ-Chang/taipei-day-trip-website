@@ -130,50 +130,48 @@ timePicker[0].addEventListener("click", ()=>{
     afternoonFee.style.display="none";
     time=timePicker[0].value;
     price=2000;
-    // localStorage.price=price;
-    // localStorage.removeItem("price");
-    // sessionStorage.setItem("price", price);
 })
 timePicker[1].addEventListener("click", ()=>{
     afternoonFee.style.display="block";
     morningFee.style.display="none";
     time=timePicker[1].value;
     price=2500;
-    // localStorage.price=price;
-    // localStorage.removeItem("price");
-    // sessionStorage.setItem("price", price);
 })
 // 開始預定行程
 let booking=document.getElementById("booking-btn");
 booking.addEventListener("click", ()=>{
-    console.log("景點編號", id);
-    console.log("預定日期", date);
-    console.log("預定時間", time);
-    console.log("價錢", price);
-    if(date!==undefined & time!==undefined){
-        fetch("/api/booking", {
-            method:"POST",
-            body: JSON.stringify({
-                "attractionId": `${id}`,
-                "date": `${date}`,
-                "time": `${time}`,
-                "price":`${price}`
-              }),
-            headers: {
-                "Content-type": "application/json"
-            }
-        }).then((response)=>{
-            return response.json();
-        }).then((data)=>{
-            if(data['ok']){
-                window.location.href="/booking";
-            }else{
-                console.log(data['message']);
-            }
-        })
-    }else{
-        // 沒有選擇該如何處理？
-        console.log("請選擇訂單內容")
-    }
+    fetch("/api/user",{
+        method: 'GET',
+        credentials: 'include'
+      }).then((response)=>{
+          return response.json()
+      }).then((data)=>{
+          if(data['data']!==null){
+            fetch("/api/booking", {
+                method:"POST",
+                body: JSON.stringify({
+                    "attractionId": `${id}`,
+                    "date": `${date}`,
+                    "time": `${time}`,
+                    "price":`${price}`
+                }),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then((response)=>{
+                return response.json();
+            }).then((data)=>{
+                if(data['ok']){
+                    window.location.href="/booking";
+                }else{
+                    console.log(data['message']);
+                }
+            })
+          }else{
+            createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊")
+          }
+      })
+    
+    
     
 })
