@@ -5,12 +5,10 @@ let imgArr=[]; // 景點圖 Array
 let nameArr=[]; // 景點名稱 Array
 let mrtArr=[]; // 捷運站 Array  
 let categoryArr=[]; // 景點分類 Array
-let test=0;
 
 // 載入網頁檢查登入狀態
 window.addEventListener("DOMContentLoaded", ()=>{
     document.getElementById("signinup").style.display="none";
-    console.log("cookie", document.cookie)
     fetch("/api/user",{
         method: 'GET',
         credentials: 'include'
@@ -25,6 +23,9 @@ window.addEventListener("DOMContentLoaded", ()=>{
             let logoutText=infoText("登出系統");
             logout.appendChild(logoutText);
             header.appendChild(logout);
+            if(document.getElementById("member-name")){
+                document.getElementById("member-name").innerHTML=data['data']['name'];
+            }
           }else{
             document.getElementById("signinup").style.display="block";
           }
@@ -115,3 +116,20 @@ function getId(attrId){ // 取得點擊目標 id
 
     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
 }
+
+// 預定行程
+let redirectBooking=document.getElementById("itinerary");
+redirectBooking.addEventListener("click", ()=>{
+    fetch("/api/user",{
+        method: 'GET',
+        credentials: 'include'
+      }).then((response)=>{
+          return response.json()
+      }).then((data)=>{
+          if(data['data']!==null){
+            window.location.href="/booking"
+          }else{
+            createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊")
+          }
+      })
+})

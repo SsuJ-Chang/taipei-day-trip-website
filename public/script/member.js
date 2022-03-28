@@ -110,7 +110,6 @@ function clearInput(selector){  // 清空 input
 
 // 右上角 登入/註冊
 let funcBg=document.getElementsByClassName("header-func-bg");
-let signinUI=document.getElementById("signin-hide");
 let signinup=document.getElementById("signinup");
 signinup.addEventListener("click", ()=>{
     createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊")
@@ -211,16 +210,3 @@ function logout(){ // 登出
         console.log(error);
     })
 }
-
-// 預定行程
-let switchBooking=document.getElementById("itinerary");
-switchBooking.addEventListener("click", ()=>{
-    // fetch("/api/user").then((response)=>{
-    //     return response.json();
-    // }).then((data)=>{
-    //     console.log(data);
-    // }).catch((error)=>{
-    //     console.log(error);
-    // })
-    window.location.href="/booking"
-})

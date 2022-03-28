@@ -49,6 +49,7 @@ rArrow.addEventListener("click", ()=>{
     showImg(currentImageIndex);
 })
 
+let id=0;
 window.addEventListener("load", ()=>{  // 網頁載入的結果
     let path=window.location.pathname.split('/');
     id=path[2];
@@ -113,42 +114,64 @@ window.addEventListener("load", ()=>{  // 網頁載入的結果
 })
 
 // 取得日期的 input 值
-let date="";
+let date;
 let datepicker=document.getElementById("date-input")
 datepicker.addEventListener("change", ()=>{
     date=datepicker.value;
 })
 // 取得 時間 radio 的值和對應顯示價錢結果
-let time="";
+let time;
 let price=2000;
 let timePicker=document.getElementsByClassName("time");
 let morningFee=document.getElementById("price-1");
-let eveningFee=document.getElementById("price-2");
+let afternoonFee=document.getElementById("price-2");
 timePicker[0].addEventListener("click", ()=>{
     morningFee.style.display="block";
-    eveningFee.style.display="none";
+    afternoonFee.style.display="none";
     time=timePicker[0].value;
+    price=2000;
 })
 timePicker[1].addEventListener("click", ()=>{
-    eveningFee.style.display="block";
+    afternoonFee.style.display="block";
     morningFee.style.display="none";
     time=timePicker[1].value;
+    price=2500;
 })
 // 開始預定行程
-let booking=document.getElementById("order-btn");
+let booking=document.getElementById("booking-btn");
 booking.addEventListener("click", ()=>{
-    console.log("預定日期", date);
-    console.log("預定時間", time);
-    console.log("預定價錢", price);
-    // fetch("/api/booking", {
-    //     method:"POST",
-    //     body: JSON.stringify({
-    //         "name": `${name}`,
-    //         "email": `${email}`,
-    //         "password": `${pw}`
-    //       }),
-    //     headers: {
-    //         "Content-type": "application/json"
-    //     }
-    // })
+    fetch("/api/user",{
+        method: 'GET',
+        credentials: 'include'
+      }).then((response)=>{
+          return response.json()
+      }).then((data)=>{
+          if(data['data']!==null){
+            fetch("/api/booking", {
+                method:"POST",
+                body: JSON.stringify({
+                    "attractionId": `${id}`,
+                    "date": `${date}`,
+                    "time": `${time}`,
+                    "price":`${price}`
+                }),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then((response)=>{
+                return response.json();
+            }).then((data)=>{
+                if(data['ok']){
+                    window.location.href="/booking";
+                }else{
+                    console.log(data['message']);
+                }
+            })
+          }else{
+            createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊")
+          }
+      })
+    
+    
+    
 })

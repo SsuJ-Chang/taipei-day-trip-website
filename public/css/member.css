@@ -1,0 +1,68 @@
+.header-func-bg{
+    background-color: #000000;
+    opacity: 0.25;
+    width:100%;height:100%;
+    position:absolute;top:0;right:0;bottom:0;left:0;z-index: 20;
+}
+.member-func{
+    box-sizing: border-box;position: relative;
+    width:340px;height:275px;border-radius: 6px;
+    background-color: #fff;opacity: 1;z-index: 30;
+    box-shadow: 0px 4px 60px #AAAAAA;
+    margin:34px auto;
+    display: grid;
+    grid-template-columns: 340px;
+    justify-content: center;
+    -webkit-animation-name: scale;
+    -moz-animation-name: scale;
+    -webkit-animation-duration: 0.4s;
+    -moz-animation-duration: 0.4s;
+    animation-name: scale;
+    animation-duration: 0.4s
+}
+@keyframes scale{
+    from {opacity: .3; transform:scale(0)}
+    to {opacity: 1; transform:scale(1)}
+}
+@-webkit-keyframes scale{
+    from {opacity: .3;transform:scale(0)}
+    to {opacity: 1; transform:scale(1)}
+  }
+@-moz-keyframes scale{
+    from {opacity: .3; transform:scale(0)}
+    to {opacity: 1; transform:scale(1)}
+}
+.func-deco{
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    height:10px;border-radius: 6px 6px 0px 0px;
+}
+.func-title{
+    font-size: 24px;font-weight:900;text-align: center;
+    height:57px;line-height: 57px;
+}
+.func-close{
+    position: absolute;top:27px;right:17px;cursor:pointer;
+}
+.func-form{
+    margin:0px 15px;
+}
+.func-input{
+    width:278px; height:15px;border-radius: 5px;outline: none;
+    color:#666;font-size: 16px;font-weight: 400;
+    padding:15px;border:1px solid;margin-bottom:10px;
+}
+.func-btn{
+    width:310px; height:47px;border: none;cursor: pointer;
+    color:#fff;background-color: #448899;
+    font-size: 19px;font-weight: 400; border-radius: 5px;
+}
+.func-btn:hover{opacity:0.9;}
+.switch{
+    text-align: center;height:47px;line-height: 47px;
+}
+.switch>p{
+    cursor: pointer;margin:auto;width: 200px;height:22px;
+}
+.message{
+    font-weight: bolder;color:#448899;text-align: center;padding-top: 10px;
+}

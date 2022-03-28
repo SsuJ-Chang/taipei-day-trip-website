@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taipei Trip 台北一日遊</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- <link href="/css/booking.css" rel="stylesheet" type="text/css" media="all" /> -->
+    <link href="/css/member.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/booking.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/RWD.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/decoration.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
     <header id="header-tag">
@@ -19,35 +21,52 @@
     </header>
 <!--  -->
     <div id="scroll">    
-        
-        <div id="booking-user-name">你好，{{name}}，待預訂的行程如下：</div>
-
+        <div class="common-container">
+            <div class="booking-user-name">你好，<span id="member-name"></span>，待預訂的行程如下：</div>
+        </div>
         <div class="booking-info">
-            <div class="booking-img"><img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000341.jpg" /></div>
-            <div class="booking-title"><b>台北一日遊：</b></div>
-            <div class="booking-date">日期：</div>
-            <div class="booking-time">時間：</div>
-            <div class="booking-fee">費用：</div>
-            <div class="booking-address">地點：</div>
+            <div class="booking-img"></div>
+            <div>
+                <div class="booking-title">台北一日遊：</div>
+                <div class="booking-date"><b>日期：</b></div>
+                <div class="booking-time"><b>時間：</b></div>
+                <div class="booking-price"><b>費用：</b></div>
+                <div class="booking-address"><b>地點：</b></div>
+            </div>
+            <div id="booking-delete"><img src="/pic/icon_delete.png" /></div>
         </div>
-
-        <div id="hr">
-            <div id="line"></div>
+<!--  -->
+        <div class="hr">
+            <div class="line"></div>
         </div>
-
-        
-
-        <div id="hr">
-            <div id="line"></div>
+<!--  -->
+        <div class="common-container">
+            <div class="member-booking-info-title">您的聯絡資訊</div>
+            <div>聯絡姓名：<input type="text" id="name-input" pattern="^[\u4E00-\u9FA50-9A-Za-z_]{2,20}" required /></div>
+            <div>聯絡信箱：<input type="email" id="email-input" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}" required /></div>
+            <div>手機號碼：<input type="text" id="phone-input" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required /></div>
+            <div class="notice">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
         </div>
-
-
-
-        <div id="hr">
-            <div id="line"></div>
+<!--  -->
+        <div class="hr">
+            <div class="line"></div>
         </div>
-
-
+<!--  -->
+        <div class="common-container">
+            <div  class="member-booking-info-title">信用卡付款資訊</div>
+            <div>卡片號碼：<input type="text" id="card-input" placeholder="**** **** **** ****"  required /></div>
+            <div>過期時間：<input type="text" id="expiration-input" placeholder="MM/YY" required /></div>
+            <div>驗證密碼：<input type="text" id="CVV-input" placeholder="卡片後三碼" required /></div>
+        </div>
+<!--  -->
+        <div class="hr">
+            <div class="line"></div>
+        </div>
+<!--  -->
+        <div class="common-container payment">
+            <div id="total-price">總價：</div>
+            <button id="payment-btn">確認訂購並付款</button>
+        </div>
 <!--  -->
         <footer>COPYRIGHT © 2021 台北一日遊</footer>    
     </div>
