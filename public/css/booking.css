@@ -38,7 +38,7 @@
     justify-items: right;
 }
 #payment-btn{
-    width:173px; height:36px;border: none;
+    width:175px; height:36px;border: none;
     color:#fff;background-color: #448899;cursor:pointer;
     font-size: 19px;font-weight: 400; border-radius: 5px;
 }
