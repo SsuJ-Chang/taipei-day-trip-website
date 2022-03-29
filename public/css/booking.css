@@ -27,10 +27,11 @@
 .member-booking-info-title{
     font-size: 19px;font-weight: 700;margin-bottom: 24px;
 }
+.card-input-title{position:relative;bottom: 30px;}
 #name-input, #email-input, #phone-input, #card-input, #expiration-input, #CVV-input{
     box-sizing: border-box;width:200px;height:38px;outline:none;
     border-radius: 5px;margin-bottom: 15px;border: 1px solid #E8E8E8;padding: 10px;
-    size:16px;
+    size:16px;display: inline-block;
 }
 .notice{font-weight: 700;margin-top: 5px;}
 #total-price{font-weight: 700;margin-bottom: 25px;}

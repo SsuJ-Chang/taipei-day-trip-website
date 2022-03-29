@@ -170,8 +170,5 @@ booking.addEventListener("click", ()=>{
           }else{
             createMemberUI("signin", "登入會員帳號", "登入帳戶", "還沒有帳戶？點此註冊")
           }
-      })
-    
-    
-    
+      })  
 })
