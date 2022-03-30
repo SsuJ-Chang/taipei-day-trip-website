@@ -27,6 +27,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
             document.querySelectorAll(".hr")[1].innerHTML="";
             document.querySelectorAll(".hr")[2].innerHTML="";
             document.querySelector("footer").style.height="860px";
+            document.getElementById("scroll").style.overflow="hidden";
         }else{
             bookingPrice=data['data']['price'];
             bookingAttractionId=data['data']['attraction']['id'];

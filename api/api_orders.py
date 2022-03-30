@@ -67,7 +67,6 @@ def oreder():
 @api_orders.route("/api/orders", methods=["GET"])
 def get_oreder():
     JWT_cookie=request.cookies.get("JWT") # 取得前端進來的 cookie
-    order_data=request.json
     if JWT_cookie is None:
         response=make_response({"error": True, "message": "未登入系統，拒絕存取"}, 403)
     else:

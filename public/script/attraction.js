@@ -1,4 +1,7 @@
 let currentImageIndex=0;
+let Today=new Date();
+let today=`${Today.getFullYear()}`+"-0"+`${Today.getMonth()+1}`+"-"+`${Today.getDate()}`
+document.getElementById("date-input").setAttribute("min", today)
 
 // 顯示圖片
 function showImg(index){
