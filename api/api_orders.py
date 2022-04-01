@@ -27,7 +27,7 @@ def oreder():
                 body={
                     "prime": order_data['prime'],
                     "partner_key": config('partner_key'),
-                    "merchant_id": "RJcorp_TAISHIN",
+                    "merchant_id": "loch0728_TAISHIN",
                     "details":order_data['order']['trip']['attraction']['name'],
                     "amount": order_data['order']['price'],
                     "cardholder": {

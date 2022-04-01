@@ -105,7 +105,7 @@ deleteBooking.addEventListener("click", ()=>{
 })
 
 // Tappay
-TPDirect.setupSDK(123882, 'app_2rxlENbKmrQ40kVKierihMh0ej3RduDmQnoranmM74KtztFXqy1i4DR6HYAE', 'sandbox');  // Setup SDK
+TPDirect.setupSDK(123937, 'app_KmyPgXbcehq3Wz9K3Cm92GpSdJEBIBtlYpNykdokn3kMsaBCfFSnADShAt86', 'sandbox');  // Setup SDK
 var fields = {
     number: {
         // css selector
