@@ -82,7 +82,6 @@ function closeUI(n){ // 移除最後 n 個子元素
     for(let i=0;i<n;i++){
         header.lastChild.remove();
     }
-    window.location.reload();
 }
 
 function switchUI(typeId){ // 切換 登入 與 註冊 UI
