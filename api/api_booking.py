@@ -53,6 +53,8 @@ def get_booking():
         sql="SELECT `tpe-attractions`.id, `tpe-attractions`.name, `tpe-attractions`.address, `tpe-attractions`.images, `booking`.date, `booking`.time, `booking`.price from `tpe-attractions` JOIN `booking` ON `booking`.attraction_id = `tpe-attractions`.id WHERE member_id=%s"
         booking_cursor.execute(sql, (JWT_decode['id'],))
         result=booking_cursor.fetchone()
+        booking_cursor.close()
+        cnx.close()
         if result is not None:
             response=make_response({"data":{
                 "attraction":{"id":result['id'], "name":result['name'], "address":result['address'], "image":json.loads(result['images'])[0]},
