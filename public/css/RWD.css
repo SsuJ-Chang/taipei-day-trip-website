@@ -37,7 +37,7 @@
         grid-template-columns: 266px 1fr 34px;
     }
     /* thankyou */
-    .thankyou-container{
+    .thankyou-container, .order-info{
         grid-template-columns: 1fr;
     }
 }

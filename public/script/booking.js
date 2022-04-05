@@ -5,6 +5,50 @@ let bookingAttractionAddress="";
 let bookingAttractionImage="";
 let bookingDate="";
 let bookingTime="";
+
+function createAlertUI(titleStr, messageStr){ // 動態生成 警告視窗
+    let header=document.getElementById("header-tag");
+    // 半透明黑底
+    let funcBg=document.createElement("div");
+    setAttributes(funcBg, {"class":"header-func-bg"});
+    header.appendChild(funcBg);
+    // 警告視窗 最外層
+    let alertUIDiv=document.createElement("div");
+    setAttributes(alertUIDiv, {"class":"alert-BG"});
+    header.appendChild(alertUIDiv)
+
+     // 最上面裝飾
+    let alertDeco=document.createElement("div");
+    setAttributes(alertDeco, {"class":"alert-deco"});
+    // 錯誤 Title
+    let alertTitle=document.createElement("div");
+    alertTitle.setAttribute("class", "alert-title");
+    let title=infoText(`${titleStr}`);
+    alertTitle.appendChild(title);
+
+    // 關閉按鈕
+    let alertClose=document.createElement("img");
+    setAttributes(alertClose ,{"src":"/pic/icon_close.png", "class":"alert-close", "onclick":"closeUI(2)"});
+
+    // 警示訊息
+    let alertMessage=document.createElement("div");
+    alertMessage.setAttribute("id", "alert-message");
+    let errorDiv=document.createElement("div");
+    errorDiv.setAttribute("class", "alert-message");
+    let alertMsg=infoText(`${messageStr}`);
+    errorDiv.appendChild(alertMsg);
+    alertMessage.appendChild(errorDiv);
+
+    alertUIDiv.appendChild(alertDeco);
+    alertUIDiv.appendChild(alertTitle);
+    alertUIDiv.appendChild(alertClose);
+    alertUIDiv.appendChild(alertMessage);
+
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+}
+
 window.addEventListener("DOMContentLoaded", ()=>{
     fetch("/api/booking",
         {method:"GET"}
@@ -186,16 +230,17 @@ submitButton.addEventListener("click", (e)=>{
     e.preventDefault();
     const tappayStatus = TPDirect.card.getTappayFieldsStatus()
     if (tappayStatus.canGetPrime === false) {
-        alert('can not get prime')
+        createAlertUI("錯誤", "請確認信用卡資料")
+        console.log('can not get prime');
         return
     }
     TPDirect.card.getPrime((result) => { // 取得 Prime Token 結果
         if (result.status !== 0) {
-            alert('getPrime error' + result.msg)
+            createAlertUI("錯誤", "請確認信用卡資料")
+            console.log('getPrime error' + result.msg);
             return
         }
         console.log('getPrime success: ' + result.card.prime)
-        // console.log(result);
         
         fetch("/api/orders", {
             method:"POST",
@@ -224,10 +269,16 @@ submitButton.addEventListener("click", (e)=>{
                 "Content-type": "application/json"
             }
         }).then((response)=>{
-            return response
+            return response.json()
         }).then((data)=>{
-            // 還不確定要幹嘛
-            console.log("回應結果", data)
+            if(data['message']==="訂單建立失敗，請確認聯絡資訊輸入正確"){ // 聯絡資訊輸入不正確
+                createAlertUI("錯誤", `${data['message']}`)
+                console.log(`${data['message']}`)
+            }else if(data['error']){
+                window.location.href="..";
+            }else{
+                window.location.href=`/thankyou?number=${data['data']['number']}`;
+            }
         }).catch((error)=>{
             console.log(error)
         })
