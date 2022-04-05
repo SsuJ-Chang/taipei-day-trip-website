@@ -44,9 +44,9 @@ function createAlertUI(titleStr, messageStr){ // 動態生成 警告視窗
     alertUIDiv.appendChild(alertClose);
     alertUIDiv.appendChild(alertMessage);
 
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    }, { passive: false });
+    // document.addEventListener('touchmove', function(e) {
+    //     e.preventDefault();
+    // }, { passive: false });
 }
 
 window.addEventListener("DOMContentLoaded", ()=>{

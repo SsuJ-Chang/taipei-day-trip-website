@@ -72,9 +72,9 @@ function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 sign
     memberFuncDiv.appendChild(funcMessage);
     memberFuncDiv.appendChild(funcSwitch);
 
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    }, { passive: false });
+    // document.addEventListener('touchmove', function(e) {
+    //     e.preventDefault();
+    // }, { passive: false });
 }
 
 function closeUI(n){ // 移除最後 n 個子元素
