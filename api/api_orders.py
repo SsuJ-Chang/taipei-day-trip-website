@@ -110,7 +110,7 @@ def get_order(orderNumber):
                     "email": result['email'],
                     "phone": result['phone']
                     },
-                    "status": 1
+                    "status": 0
                 }
             }
         else:
