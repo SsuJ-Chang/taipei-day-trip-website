@@ -3,6 +3,7 @@ from api.api_data_lst import api_data_lst
 from api.api_data_id import api_data_id
 from api.api_user import api_user
 from api.api_booking import api_booking
+from api.api_orders import api_orders
 
 app=Flask(__name__, static_folder="public", static_url_path="/")
 app.config["JSON_AS_ASCII"]=False
@@ -13,6 +14,7 @@ app.register_blueprint(api_data_lst)
 app.register_blueprint(api_data_id)
 app.register_blueprint(api_user)
 app.register_blueprint(api_booking)
+app.register_blueprint(api_orders)
 
 
 @app.route("/")

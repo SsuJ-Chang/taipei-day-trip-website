@@ -5,7 +5,22 @@
     margin: 0 10px;
 }
 .thankyou-greeting{
-    font-weight: 700;font-size: 19px;margin:46px 0 35px 0;
+    font-weight: 900;margin:46px 0 35px 0;
+}
+.order-info{
+    display:grid;
+    grid-template-columns: 1000px;
+    justify-content:center;
+    margin: 0 10px;
+}
+.order-number{
+    color: #448899; font-weight: 900; margin-bottom: 10px;
+}
+.order-attraction, .order-date, .order-time{
+    margin-bottom: 10px;
+}
+.notice{
+    margin-top: 10px;
 }
 footer{
     height:860px;
