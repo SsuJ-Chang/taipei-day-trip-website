@@ -70,10 +70,8 @@ def signup():
             bcrypt = Bcrypt() # 實例化 bcrypt
             hashed=bcrypt.generate_password_hash(password=signup_data['password'])
             print(hashed)
-
             signup_cursor.execute("INSERT INTO member (name, email, password) VALUES (%s, %s, %s)", (signup_data['name'], signup_data['email'], hashed))
-            cnx.commit()
-            signup_cursor.close()
+            
             print(f"{signup_data['name']} 註冊成功！")
             return {"ok": True}, 200
         else:
@@ -82,6 +80,8 @@ def signup():
     except:
         return {"error": True, "message": "伺服器內部錯誤"}, 500
     finally:
+        cnx.commit()
+        signup_cursor.close()
         cnx.close()
 
 @api_user.route("/api/user", methods=["DELETE"])

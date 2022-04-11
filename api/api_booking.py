@@ -28,15 +28,14 @@ def booking():
                 response=make_response({"error": True, "message": "訂單建立失敗，請選擇訂單內容。"}, 400)
             elif check_booking is None: # 新增訂單
                 booking_cursor.execute("INSERT INTO booking (member_id, attraction_id, date, time, price) VALUES (%s, %s, %s, %s, %s)", (JWT_decode['id'], booking_data['attractionId'], booking_data['date'], booking_data['time'], booking_data['price']))
-                cnx.commit()
                 response=make_response({"ok": True}, 200)
             else: # 已有訂單更新資料
-                booking_cursor.execute("UPDATE booking SET attraction_id=%s, date=%s, time=%s, price=%s WHERE member_id=%s", (booking_data['attractionId'], booking_data['date'], booking_data['time'], booking_data['price'], JWT_decode['id']))
-                cnx.commit()
+                booking_cursor.execute("UPDATE booking SET attraction_id=%s, date=%s, time=%s, price=%s WHERE member_id=%s", (booking_data['attractionId'], booking_data['date'], booking_data['time'], booking_data['price'], JWT_decode['id']))              
                 response=make_response({"ok": True}, 200)
         except:
             response=make_response({"error": True, "message": "伺服器內部錯誤"}, 500)
         finally:
+            cnx.commit()
             booking_cursor.close()
             cnx.close()
     return response        
