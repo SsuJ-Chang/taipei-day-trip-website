@@ -1,4 +1,3 @@
-from urllib import response
 from flask import *
 import api.connector as connector
 import jwt
@@ -51,10 +50,7 @@ def order():
                     cnx=trip_pool.get_connection()
                     order_cursor=cnx.cursor(buffered=True, dictionary=True)
                     order_cursor.execute("INSERT INTO orders (trade_id, member_id, attraction_id, date, time, price, username, email, phone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (dict_result['rec_trade_id'] ,JWT_decode['id'], order_data['order']['trip']['attraction']['id'], order_data['order']['trip']['date'], order_data['order']['trip']['time'], order_data['order']['price'], order_data['order']['contact']['name'], order_data['order']['contact']['email'], order_data['order']['contact']['phone']))
-                    cnx.commit()
                     order_cursor.execute("DELETE FROM booking WHERE member_id=%s", (JWT_decode['id'],))
-                    cnx.commit()
-                    order_cursor.close()
                     print(f"{JWT_decode['name']}，付款成功")
                 else:
                     msg="付款失敗"
@@ -72,6 +68,8 @@ def order():
             except:
                 response=make_response({"error": True, "message": "伺服器內部錯誤"}, 500)
             finally:
+                cnx.commit()
+                order_cursor.close()
                 cnx.close()
 
     return response
@@ -82,38 +80,44 @@ def get_order(orderNumber):
     if JWT_cookie is None:
         response=make_response({"error": True, "message": "未登入系統，拒絕存取"}, 403)
     else:
-        cnx=trip_pool.get_connection()
-        print("orderNumber:", orderNumber)
-        order_cursor=cnx.cursor(buffered=True, dictionary=True)
-        order_cursor.execute("SELECT trade_id, price, attraction_id, `tpe-attractions`.name, `tpe-attractions`.address, `tpe-attractions`.images, date, time, orders.username, email, phone FROM orders JOIN `tpe-attractions` WHERE trade_id=%s AND `tpe-attractions`.id=orders.attraction_id", (orderNumber,))
-        result=order_cursor.fetchone()
-        print("GET result: ", result)
-        order_cursor.close()
-        cnx.close()
-        if result is not None:
-            final_result={
-                "data": {
-                    "number": result['trade_id'],
-                    "price": result['price'],
-                    "trip": {
-                    "attraction": {
-                        "id": result['attraction_id'],
-                        "name": result['name'],
-                        "address": result['address'],
-                        "image": json.loads(result['images'])[0]
-                    },
-                    "date": result['date'],
-                    "time": result['time']
-                    },
-                    "contact": {
-                    "name": result['username'],
-                    "email": result['email'],
-                    "phone": result['phone']
-                    },
-                    "status": 1
+        try:
+            cnx=trip_pool.get_connection()
+            print("orderNumber:", orderNumber)
+            order_cursor=cnx.cursor(buffered=True, dictionary=True)
+            order_cursor.execute("SELECT trade_id, price, attraction_id, `tpe-attractions`.name, `tpe-attractions`.address, `tpe-attractions`.images, date, time, orders.username, email, phone FROM orders JOIN `tpe-attractions` WHERE trade_id=%s AND `tpe-attractions`.id=orders.attraction_id", (orderNumber,))
+            result=order_cursor.fetchone()
+            print("GET result: ", result)
+            
+            if result is not None:
+                final_result={
+                    "data": {
+                        "number": result['trade_id'],
+                        "price": result['price'],
+                        "trip": {
+                        "attraction": {
+                            "id": result['attraction_id'],
+                            "name": result['name'],
+                            "address": result['address'],
+                            "image": json.loads(result['images'])[0]
+                        },
+                        "date": result['date'],
+                        "time": result['time']
+                        },
+                        "contact": {
+                        "name": result['username'],
+                        "email": result['email'],
+                        "phone": result['phone']
+                        },
+                        "status": 0
+                    }
                 }
-            }
-        else:
-            final_result={"data": None, "message": "無此付款訂單，請確認訂單號碼"}
-        response=make_response(final_result, 200)
+            else:
+                final_result={"data": None, "message": "無此付款訂單，請確認訂單號碼"}
+            response=make_response(final_result, 200)
+        except:
+            response=make_response({"error": True, "message": "伺服器內部錯誤"}, 500)
+        finally:
+            order_cursor.close()
+            cnx.close()
+
     return response
