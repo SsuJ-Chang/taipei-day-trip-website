@@ -1,7 +1,7 @@
 // 查詢景點名稱
 let search=document.getElementById("search");
 search.addEventListener("click", ()=>{
-    console.log("KEYWORD QUERY")
+    // console.log("KEYWORD QUERY")
     let input=document.getElementById("keyword-input");
     let keywordInput=input.value;  // 接收 input
     src="api/attractions?keyword="+keywordInput;
@@ -22,7 +22,7 @@ search.addEventListener("click", ()=>{
         fetch(src).then((response)=>{
             return response.json();
         }).then((data)=>{
-            console.log("回應資料", data);
+            // console.log("回應資料", data);
             mainContent=document.getElementById("main");
             mainContent.innerHTML=""; // 移除 main 的所有元素
             //mainContent.textContent="";
@@ -37,10 +37,10 @@ search.addEventListener("click", ()=>{
                     mrtArr.push(data['data'][i]['mrt']);
                     categoryArr.push(data['data'][i]['category']);
                 }
-                console.log(idArr)
+                // console.log(idArr)
                 createAttractions(page*12, page*12+data['data'].length);
                 page=data['nextPage'];
-                console.log("下一頁" ,page);
+                // console.log("下一頁" ,page);
                 src="api/attractions?page="+page+"&keyword="+keywordInput;
                 fetching===false;
             }
