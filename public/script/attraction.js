@@ -25,7 +25,7 @@ function showImg(index){
     }
     allDots[currentImageIndex].className+=" active";
 
-    console.log(`目前顯示第 ${currentImageIndex+1} 張圖片`);
+    // console.log(`目前顯示第 ${currentImageIndex+1} 張圖片`);
 }
 // 自動輪播
 function autoSlide(time){

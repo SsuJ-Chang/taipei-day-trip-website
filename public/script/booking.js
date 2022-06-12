@@ -55,7 +55,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     ).then((response)=>{
         return response.json();
     }).then((data)=>{
-        console.log(data);
+        // console.log(data);
         if(data['error']){ // 未登入跳回首頁
             window.location.href="..";
         }else if(data['data']===null){ // 無行程
@@ -137,7 +137,7 @@ deleteBooking.addEventListener("click", ()=>{
     }).then((response)=>{
         return response.json();
     }).then((data)=>{
-        console.log(data);
+        // console.log(data);
         if(data['ok']){ 
             window.location.reload();
         }else{

@@ -109,10 +109,10 @@ function errorMsg(message){  // 顯示搜尋錯誤
 // }
 
 function getId(attrId){ // 取得點擊目標 id
-    console.log(attrId); // 父 Node id 名稱
+    // console.log(attrId); // 父 Node id 名稱
     let idx=Number(attrId.split("-")[1]) // 取得 id 尾數作為 index
     let id=idArr[idx]  // 從 id array 中取得景點真正 id
-    console.log("景點 id ", id);
+    // console.log("景點 id ", id);
 
     window.location.replace(`attraction/${id}`);  // 跳轉至景點頁面
 }

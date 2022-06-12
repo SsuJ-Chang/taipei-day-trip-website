@@ -12,14 +12,14 @@ window.addEventListener("load", ()=>{
                 if(data['error']){
                     window.location.href="..";
                 }else if(data['data']===null){
-                    console.log(data);
+                    // console.log(data);
                     document.getElementById("thankyou-start-content").innerHTML="";
                     let startContent=infoText(`，${data[`message`]}`)
                     document.getElementById("thankyou-start-content").appendChild(startContent);
                     document.getElementsByClassName("order-info")[0].innerHTML="";
                     document.querySelector("footer").style.height="726px";
                 }else{
-                    console.log(data);
+                    // console.log(data);
                     let orderNumber=infoText(data['data']['number'])
                     document.getElementsByClassName("order-number")[0].appendChild(orderNumber);
                     let orderAttraction=infoText(data['data']['trip']['attraction']['name'])

@@ -13,7 +13,7 @@ let callback=(e)=>{ // 觸發條件後要處理的回呼函式
             fetch(src).then(response=>{
                 return response.json();
             }).then((data)=>{
-                console.log("回應資料", data);
+                // console.log("回應資料", data);
                 for(let i=0;i<data['data'].length;i++){
                     idArr.push(data['data'][i]['id']);
                     imgArr.push(data['data'][i]['images'][0]);
@@ -23,7 +23,7 @@ let callback=(e)=>{ // 觸發條件後要處理的回呼函式
                 }
                 createAttractions(page*12, page*12+data['data'].length)
                 page=data['nextPage'];
-                console.log("下一頁" ,page);
+                // console.log("下一頁" ,page);
                 src="api/attractions?page="+page;
                 fetching=false;  // 當此次 fetch 的結果都處理完成 就把請求狀態改為 false
             }).catch((error)=>{

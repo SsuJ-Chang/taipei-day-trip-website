@@ -38,12 +38,12 @@ function createMemberUI(type, titleStr, btnStr, switchStr){ // 動態生成 sign
     let emailInput=document.createElement("input");
     setAttributes(
         emailInput, 
-        {"type":"email", "placeholder":"輸入電子信箱", "class":"func-input","id":`${type}-email`}
+        {"type":"email", "placeholder":"輸入電子信箱", "class":"func-input","id":`${type}-email`, "value":"test@test.com"}
     )
     let pwInput=document.createElement("input");
     setAttributes(
         pwInput, 
-        {"type":"password", "placeholder":"輸入密碼", "class":"func-input", "id":`${type}-pw`}
+        {"type":"password", "placeholder":"輸入密碼", "class":"func-input", "id":`${type}-pw`, "value":"test"}
     )
     let btn=document.createElement("button");
     setAttributes(btn, {"class":"func-btn", "id":`${type}-btn`, "onclick":`${type}()`});
