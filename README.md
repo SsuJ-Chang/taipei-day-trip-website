@@ -1,28 +1,30 @@
 # [Taipei Day Trip](https://17tesyun99.rj728web.fun/)
-It's a project of arranging 1 day Tapei trip website.
+It's a website project of arranging 1 day trip in Taipei.
+![tp01](https://user-images.githubusercontent.com/52148950/173220494-239b6daa-a952-4dd1-a654-d5010690a221.JPG)
+![tp02](https://user-images.githubusercontent.com/52148950/173220500-cd57dc18-953e-4fb5-bb6f-fb5958706419.JPG)
 
-
-Welcome to try this game!
+There is a testing account below for this website!
 |Account|Password|
 |---|---|
 |test@test.com|test|
 
-
 ## Core Features
-* Searching detail famous attractions in Taipei
-* 
+* Searching detail information of famous attractions in Taipei
+  * Browsing directly
+  * Keying keyword to search specific attractions
+* Booking the trip
+* Paying the order with a credit card
 
 ## Language
 * Front-End: Javascript
 * Back-End: Python Flask
 
-## Back-End Architecture
-
-
-### About Back-End
-* Realizing MVC by **Flask Blueprint**
-* Realizing [RESTful API]()
+## Key Techniques
+* Realizing [RESTful API]() in all pages which need to communicate with database
+  * Using **Fetch API** in front-end to call APIs 
 * Storing member data, attraction data, booking data and order data by **MySQL**
  * Optimizing query by using **Index**  
 * Authenticating member state by **JWT**
-* Integrating **TapPay** payment system
+* Integrating **[TapPay](https://www.tappaysdk.com/zh/)** payment system
+* Deploying application server on **AWS EC2 Instance**
+* Importing **Flask Blueprint** for managing application easily
