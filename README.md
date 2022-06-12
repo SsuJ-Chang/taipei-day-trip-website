@@ -1,4 +1,4 @@
-# [Taipei Day Trip](https://17tesyun99.rj728web.fun/)
+# [Taipei Day Trip](http://taipeitrip.rj728web.fun:3000/)
 It's a website project of arranging 1 day trip in Taipei.
 ![tp01](https://user-images.githubusercontent.com/52148950/173220494-239b6daa-a952-4dd1-a654-d5010690a221.JPG)
 ![tp02](https://user-images.githubusercontent.com/52148950/173220500-cd57dc18-953e-4fb5-bb6f-fb5958706419.JPG)
@@ -20,7 +20,7 @@ There is a testing account below for this website!
 * Back-End: Python Flask
 
 ## Key Techniques
-* Realizing [RESTful API]() in all pages which need to communicate with database
+* Realizing RESTful API in all pages which need to communicate with database
   * Using **Fetch API** in front-end to call APIs 
 * Storing member data, attraction data, booking data and order data by **MySQL**
  * Optimizing query by using **Index**  
