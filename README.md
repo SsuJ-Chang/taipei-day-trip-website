@@ -16,12 +16,12 @@ There is a testing account below for this website!
 * Paying the order with a credit card
 
 ## Language
-* Front-End: Javascript
-* Back-End: Python Flask
+* Frontend: Javascript
+* Backend: Python Flask
 
 ## Key Techniques
 * Realizing RESTful API in all pages which need to communicate with database
-  * Using **Fetch API** in front-end to call APIs 
+  * Using **Fetch API** in frontend to call APIs 
 * Storing member data, attraction data, booking data and order data by **MySQL**
  * Optimizing query by using **Index**  
 * Authenticating member state by **JWT**
