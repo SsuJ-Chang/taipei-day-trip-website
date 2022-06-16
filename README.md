@@ -15,11 +15,8 @@ There is a testing account below for this website!
 * Booking the trip
 * Paying the order with a credit card
 
-## Language
-* Frontend: Javascript
-* Backend: Python Flask
-
-## Key Techniques
+## Tech Stack
+* Developing application server by **Python Flask**
 * Realizing RESTful API in all pages which need to communicate with database
   * Using **Fetch API** in frontend to call APIs 
 * Storing member data, attraction data, booking data and order data by **MySQL**
